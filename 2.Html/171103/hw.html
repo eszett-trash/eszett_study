@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>float 예제2</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    div {}
+
+    #header {
+      background-color: rgb(59, 198, 89);
+      height: 90px;
+      line-height: 100px;
+      padding: 10px
+    }
+
+    #body {
+      height: 600px;
+    }
+
+    #nav {
+      width: 20%;
+      height: 100%;
+      float: left;
+      background-color: rgb(130, 221, 134);
+    }
+
+    #content {
+      width: 80%;
+      height: 100%;
+      float: left;
+      background-color: rgb(207, 255, 211);
+
+    }
+    .inline{
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #footer {
+      background-color: rgb(44, 140, 88);
+      height: 100px;
+      clear: both;
+    }
+
+    #header_top {
+      height: 80%;
+
+    }
+
+    #cotegory {
+      border-top: grey solid 2px;
+      border-bottom: grey solid 2px;
+    }
+
+    #cotegory>ul {
+      text-align: center;
+
+    }
+
+    #cotegory>ul>li {
+      display: inline;
+      letter-spacing: 10px;
+      padding: 0px 15px 0px 15px;
+    }
+
+    #cotegory>ul>li>a {
+      text-decoration: none;
+      color: grey;
+    }
+
+    #nav>ul>li {
+      list-style-type: none;
+      border: 1px grey solid;
+      padding: 5px 10px;
+      background-color: black;
+      color: white;
+    }
+
+    #nav>ul {
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    #footer {
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    iframe {
+      border: 1px grey solid;
+      height: 100%;
+      width: 250px;
+      margin: 10px;
+    }
+
+    .ctr {
+      height: 500px;
+      float: left;
+    }
+
+    .reg {
+      float: left;
+      margin-left: 20px;
+      width: 25%;
+    }
+    p{
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNG15JNUULRNKQiOlu-b5HW25j8iLngmQeETcfLSQapFE1IF1JBg" alt="" width="80px" height="auto" style="display:inline"><a href="#" style="font-size:50px">Web Shop</a>
+  </div>
+
+  <div id="cotegory">
+    <ul>
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">ABOUT US</a></li>
+      <li><a href="#">NEWS</a></li>
+      <li><a href="#">MY ACCOUNT</a></li>
+      <li><a href="#">CONTACTS</a></li>
+    </ul>
+  </div>
+  <div id="body">
+    <div id="nav">
+      <h3>카테고리</h3>
+      <ul>
+        <li>컴퓨터</li>
+        <li>의류</li>
+        <li>음악</li>
+        <li>영화</li>
+        <li>스포츠/레저</li>
+        <li>가구/인테리어</li>
+        <li>식품</li>
+      </ul>
+    </div>
+    <div id="content">
+      <div class="inline">
+      <div class="ctr">
+        <iframe src="temp1.html" width="" height=""></iframe>
+        <iframe src="temp2.html" width="" height=""></iframe>
+      </div>
+      <div class="reg">
+        <h4>Shopping Cart</h4>
+        <p>현재 쇼핑카트에 물품이 없습니다.<br><a href="#">쇼핑카트 보기</a></p>
+        <br>
+
+        <form class="" action="index.html" method="post">
+          <h4>Log In</h4>
+          <p>아이디</p>
+          <input type="text" name="" value="">
+          <p>패스워드</p>
+          <input type="password" name="" value=""><br>
+          <input type="submit" name="" value="로그인">
+          <input type="reset" name="" value="초기화"><br>
+          <a href="#">회원가입</a>
+          <a href="#">비밀번호분실</a>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div id="footer">
+    Copyright (c) 2017 Web Shop
+  </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

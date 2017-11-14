@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>리스트</title>
+  </head>
+  <body>
+    <!--
+    리스트
+      ul태그 사용
+      ol태그 사용
+      -하위태그로 li태그 사용
+      -li태그에는 리스트에 나타날 항목들을 기술한다
+    정의 리스트
+      dl태그 사용
+
+    -->
+
+    <h2>순서가 없는 리스트</h2>
+    <!--
+      ul태그의 속성
+      type 불릿기호의 종류를 지정한다.
+        disc,square,circle
+    -->
+
+    <ul type = "circle">
+      <li>사과</li>
+      <li>배</li>
+      <li>복숭아
+        <ul type = "square">
+          <li>천도</li>
+          <li>황도</li>
+          <li>백도</li>
+        </ul>
+      </li>
+    </ul>
+
+
+
+  <h2>순서가 있는 리스트</h2>
+  <!--  ol태그의 속성
+        type 순서를 나타내는 기호를 지정한다
+        1 A a I i
+        start => 시작번호를 지정한다
+
+        value 해당 항목의 순번을 변경한다
+        해당항목의 순번이 변경되면 해당 항목 이후의
+        항목들도 자동으로 순번이 변경된다.
+      -->
+  <ol type="i" start="7">
+    <li>서울</li>
+    <li>대전</li>
+    <li>대구</li>
+    <li>부산</li>
+    <li value="1">제주
+      <ol type="I" start="3">
+        <li>서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>부산</li>
+      </ol>
+      </li>
+    <li>광주</li>
+    <li>전주</li>
+  </ol>
+
+  <hr color ="black">
+  <h2>정의리스트</h2>
+
+    <dl>
+      <dt>WWW</dt>
+      <dd>World Wide Web의 약자로 인터넷을 통칭하는 말이다.</dd>
+
+      <dt>HTML</dt>
+      <dd>Hyper Text Markup Language의 약자로 인터넷 브라우저를 통해서 볼 수 있는 화면이다</dd>
+    </dl>
+
+<!-- 자신의 취미를 순서가 없는 리스트로 나타내 보세요 -->
+
+<ol>
+  <li>취미
+    <ul>
+      <li>게임</li>
+      <li>독서</li>
+      <li>농사</li>
+    </ul>
+  </li>
+  <li>휴가 때 가고싶은 여행지
+    <ol>
+      <li>푸켓</li>
+      <li>말레이시아</li>
+      <li>몰디브</li>
+    </ol>
+  </li>
+  <li>
+    <dt>이름의 뜻</dt>
+    <dd>그러게요</dd>
+  </li>
+</ol>
+
+  </body>
+</html>

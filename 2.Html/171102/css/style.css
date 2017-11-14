@@ -1,0 +1,93 @@
+/*
+셀렉터:nth-child(odd)
+{
+홀수번째에 적용됨
+}
+셀렉터:nth-child(even)
+{
+짝수번째에 작용됨
+}
+
+*/
+body{
+  margin: 0;
+  padding: 0;
+
+}
+#body {
+  /*background-image: url("");*/
+  background-color: cyan;
+  background-image: url(../../images/back.jpg);
+  background-repeat: repeat-y;
+  background-size: 200px 200px;
+  background-attachment: scroll;
+  /*스크롤에 따라 배경이 움직임*/
+  background-attachment: fixed;
+  /*스크롤에 따라 배경이 안움직임 (고정)*/
+  /*background-size: cover;*/
+}
+
+#one {
+  position: absolute;
+  left: 300px;
+  top: 100px;
+  width: 400px;
+  height: 300px;
+  background-color: yellow;
+  z-index: 1;
+}
+
+#two {
+  position: absolute;
+  left: 400px;
+  top: 200px;
+  background-color: pink;
+  width: 400px;
+  height: 300px;
+  z-index: 3;
+}
+
+#one_2, #two_2, #three_2 {
+  width: 200px;
+  height: 50px;
+  border: solid 1px black;
+}
+
+#one_2 {
+  background-color: rgb(255, 144, 144)
+}
+
+#two_2 {
+  background-color: rgb(195, 71, 71);
+
+}
+#two_2:hover
+{
+  position: relative;
+  left: 100px;
+}
+
+#three_2 {
+  background-color: rgb(156, 47, 47);
+  color: white;
+}
+
+#lt_bg
+{
+  background-image: url("http://ko.maine-coon-kitten.my-coon.com/%EB%B0%B0%EA%B2%BD-1600-900/%ED%9B%8C%EB%A5%AD%ED%95%9C-%EB%A9%94%EC%9D%B8-%EC%BF%A4-%EA%B3%A0%EC%96%91%EC%9D%B4-28.jpg");
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+  z-index: 2;
+}
+#lt_txt
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  z-index: 1;
+  color: white;
+  opacity: .1;
+}

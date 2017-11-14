@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: brown;
+  font-weight: bold;
+}
+
+form {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+input {
+  border: solid 1px grey;
+}
+
+.bt {
+  width: 120px;
+}
+
+table {
+  border-top: solid 3px brown;
+  border-bottom: solid 3px brown;
+}
+
+td {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.sm {
+  width: 80px;
+}
+
+.ln {
+  width: 180px;
+}
+
+.r {
+  border-right: solid 2px brown;
+}
+
+#title {
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  color: rgb(75, 208, 156);
+}
+.btm{
+  position: relative;
+  top: 10px;
+  left: calc(50% - 83px);
+}
+
+.btn_black {
+  background-color: black;
+  text-shadow: 1px 1px grey;
+  width : 80px;
+}
