@@ -39,6 +39,10 @@
 package basic_171114;
 
 class Data {
+	Data() {
+		// TODO Auto-generated constructor stub
+		
+	}
 	int x;
 }
 
