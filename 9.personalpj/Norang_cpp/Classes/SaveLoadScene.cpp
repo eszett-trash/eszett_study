@@ -14,7 +14,7 @@ Scene* SaveLoad::createScene()
 
 bool SaveLoad::init()
 {
-    if (!Layer::init())
+    if (!LayerColor::initWithColor())
     {
         return false;
     }
