@@ -14,14 +14,16 @@ Scene* SaveLoad::createScene()
 
 bool SaveLoad::init()
 {
-    if (!LayerColor:initWithColor(Color4B(0, 255, 0, 255)))
+    if (!Layer::init())
     {
         return false;
     }
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	Director::getInstance()->setClearColor(Color4F(0, 0, 0, 0));
+	/*Director::getInstance()->setClearColor(Color4F(0, 0, 0, 0));*/
+	//LayerColor *bgLayer = LayerColor::create(Color4B(255, 255, 255, 100));
+	//this->addChild(bgLayer);
 
 
 
