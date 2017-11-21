@@ -32,7 +32,7 @@ class Card {
 		this.kind = SPADE;
 		this.number = 5;
 	}
-
+	
 	@Override
 	public String toString() {
 
