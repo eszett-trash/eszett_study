@@ -51,25 +51,3 @@
 
    }
  }
- var a = Math.floor(Math.random() * 89 + 10);
- var b = Math.floor(Math.random() * 89 + 10);
-
- var c = document.third.kotae.value;
-
-
-function qw()
-{
-  a = Math.floor(Math.random() * 89 + 10);
-  b = Math.floor(Math.random() * 89 + 10);
-  document.third.mondai.value = a + "+" + b + "=";
-}
-function qwe() {
-  if(c==a+b)
-  {
-    alert("정답입니다");
-  }
-  else
-  {
-    alert("땡");
-  }
-}

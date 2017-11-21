@@ -42,14 +42,16 @@ public class DrawShape extends Frame {
 		pt[0] = new Point(100,100);
 		pt[1]= new Point(200,200);
 		pt[2]= new Point(200,100);
-		//Triangle tri = new Triangle(pt[0], pt[1], pt[2]);
-		Triangle tri = new Triangle(pt);
+		Triangle tri = new Triangle(pt[0], pt[1], pt[2]);
+		//Triangle tri = new Triangle(pt);
 		
 		
 		//5.//g.drawLine()
 		g.drawLine(tri.pt[0].x,tri.pt[0].y,tri.pt[1].x,tri.pt[1].y);
 		g.drawLine(tri.pt[1].x,tri.pt[1].y,tri.pt[2].x,tri.pt[2].y);
 		g.drawLine(tri.pt[2].x,tri.pt[2].y,tri.pt[0].x,tri.pt[0].y);
+
+
 
 		
 	}
@@ -92,6 +94,7 @@ class Circle{
 }
 
 class Triangle{
+	//객체배열을 생성했다면 객체변수의 이름들만 생성되고, 객체들의 실제 메모리는 생성되지 않는다.
 	//점 세개를 담을 수 있는 변수를 만드세요.
 	Point[] pt = new Point[3];
 	//매개변수가 하나인 생성자를 만들어

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="script.js" charset="utf-8"></script>
+</head>
+<style media="screen">
+  .temp {
+    float: left;
+  }
+
+  select {
+    width: 300px;
+  }
+
+  .btnn {
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+  }
+</style>
+
+<body>
+  <form name="testForm">
+    <!-- <select size="10" name = "cel">
+      <option value="일">하나</option>
+      <option value="이">둘</option>
+      <option value="삼">셋</option>
+      <option value="사">넷</option>
+      <option value="오">다섯</option>
+      <option value="육">여섯</option>
+      <option value="칠">일곱</option>
+      <option value="팔">여덟</option>
+      <option value="구">아홉</option>
+      <option value="십">열</option>
+    </select>
+  <input type="button" value="확인" onclick="view()">
+  <select size="10">
+
+    </select> -->
+
+    <select name="gugudan" onchange="temp();">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+    <div id="mondai"></div>
+  </form>
+
+  <form name="form_big">
+    <div class="temp">
+      <select name="left" size="30">
+    </select>
+    </div>
+    <div class="temp">
+      <input type="button" class="btnn" value=">" name="first" onclick="first_a()"><br>
+      <input type="button" class="btnn" value=">>" onclick="first_b()"><br>
+      <input type="button" class="btnn" value="<" name="second" onclick="second_a()"><br>
+      <input type="button" class="btnn" value="<<" onclick="second_b()"><br>
+    </div>
+    <div class="temp">
+      <select name="right" size="30">
+    </select>
+    </div>
+    <div class="btm" style="clear:both;">
+      <input type="text" name="aa" id="iii">
+      <input type="button" name="" value="추가하기" onclick="add()">
+    </div>
+  </form>
+
+
+
+</body>
+
+</html>
