@@ -2,8 +2,8 @@ package awt_game;
 
 public class AwtScript {
 	public static void main(String[] args) {
-		MobMoveAI mma = new MobMoveAI();
-		mma.print();
+		MobAI mma = new MobAI();
+		
 	}
 }
 
@@ -27,7 +27,7 @@ class CreaetMob {
 	SkillList skill; // 종족과 레벨을 판단해서 스킬을 넣어줌
 	
 	//기본적으로 몹 숫자는 1~3 랜덤.. 몹 생성해줌.
-	MobMoveAI[] mobmoveai = new MobMoveAI[(int)(Math.random()*3+1)];
+	MobAI[] mobmoveai = new MobAI[(int)(Math.random()*3+1)];
 	//몹 위치도 랜덤으로 뿌려줌(구현할것)
 
 }

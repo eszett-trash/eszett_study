@@ -5,9 +5,10 @@ import java.util.Arrays;
 public class DeckTest {
 	public static void main(String[] args) {
 		Deck deck = new Deck();
-		deck.pr();
+		System.out.println(deck.pick(0));
+		System.out.println(deck.pick());
 		deck.shuffle2();
-		deck.pr();
+		System.out.println(deck.pick(0));
 	}
 }
 
@@ -106,7 +107,7 @@ class Deck {
 	}
 
 	Card pick() {
-		return this.pick((int) (Math.random() * CARD_NUM));
+		return pick((int) (Math.random() * CARD_NUM));
 	}
 
 	// shuffle(카드 섞기)(연수ㅡㅂ뮨재 5-5)
@@ -126,7 +127,6 @@ class Deck {
 		Card temp;
 
 		for (int i = 0; i < 1000; i++) {
-			temp = new Card(0, 0);
 			int temp1 = (int) (Math.random() * CARD_NUM);
 			int temp2 = (int) (Math.random() * CARD_NUM);
 

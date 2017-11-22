@@ -1,6 +1,6 @@
 package awt_game;
 
-public class MobMoveAI {
+public class Move {
 	final int MAX_XPOS = 2;
 	final int MAX_YPOS = 2;
 
@@ -10,12 +10,12 @@ public class MobMoveAI {
 	int xPos;
 	int yPos;
 
-	public MobMoveAI() {
+	public Move() {
 		this.xPos = 1;
 		this.yPos = 1;
 	}
 
-	public MobMoveAI(int xPos, int yPos) {
+	public Move(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 	}
@@ -47,15 +47,7 @@ public class MobMoveAI {
 	int moveRight() {return moveRimitX(++xPos);}
 	int moveDown() 	{return moveRimitY(--yPos);}
 	int moveUp() 	{return moveRimitY(++yPos);}
-
-	void attak() {
-
-	}
-
-	void defence() {
-
-	}
-
+	
 	void print() {
 		System.out.println("xPos= " + xPos);
 		System.out.println("yPos= " + yPos);
