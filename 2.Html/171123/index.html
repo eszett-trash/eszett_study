@@ -9,20 +9,28 @@
 <script type="text/javascript">
   function temp() {
     var str = "";
+    var temp = "";
+    var cnt = 0;
     str += document.testForm.textname.value + "씨\n";
     for (var i = 0; i < document.testForm.sex.length; i++) {
       if (document.testForm.sex[i].checked) {
         str += "당신의 성별은 " + document.testForm.sex[i].value + "이고\n";
       }
     }
-    str += "당신의 취미는 ";
     for (var i = 0; i < document.testForm.fb.length; i++) {
       if (document.testForm.fb[i].checked) {
-        str += document.testForm.fb[i].value+ ",";
+        temp += document.testForm.fb[i].value + ",";
+        cnt++;
       }
     }
-    str = str.slice(0,-1);
-    str+="입니다.";
+    if (cnt == 0) {
+      temp = "취미가 없군요";
+      str += temp;
+    } else {
+      temp = temp.slice(0, -1);
+      str = str + "당신의 취미는 " + temp + "입니다.";
+    }
+
     document.testForm.textareaa.innerHTML = str;
   }
 </script>
