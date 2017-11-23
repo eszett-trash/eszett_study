@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>FILE API</title>
+  <script type="text/javascript">
+    /*
+      FILE 객체 : 파일의 기본적인 정보를 얻는다.
+      (파일 명 - name, 파일 크기 -size, 파일 종류-type, 변경 날짜 -lastModifiedDate)
+      -메서드
+        slice (시작위치, 길이);
+      -시작위치부터 길이 만큼의 파일 내용을 읽어와 객체로 반환한다.
+
+      FileReader 객체 : 파일의 내용을 읽을 수 있는 기능을 제공한다
+      -메서드
+      1)readAsText(file객체, 인코딩):파일 내용을 읽어 문자열로 반환한다.
+      2)readAsDataURL(file객체) : 파일 내용을 dataURL형식의 문자열로 반환한다
+
+      -속성
+      result : 읽어온 파일내용이 저장되어있다.
+      error :오류가 발생했을 때 오류 정보가 저장되어있다.
+
+      -이벤트
+      onload 이벤트 : 파일읽기가 성공했을 때 발생
+      onerror 이벤트 : 파일읽기 도중 오류가 발생햇을 때
+
+    */
+    function readFile() {
+      var file = document.getElementById("file").files[0];
+      var str = "";
+      str += "파일명 : " + file.name + "<br>";
+      str += "파일크기 : " + file.size + " byte <br>";
+      str += "파일 종류 : " + file.type + "<br>";
+      str += "파일 수정 날짜 : " + file.lastModifiedDate + "<br>";
+
+      document.getElementById("info").innerHTML = str;
+
+      var reader = new FileReader();
+      reader.readAsDataURL(file); //암호화되어서 출력 됨
+
+      reader.onload = function() {
+        var content =document.getElementById("content");
+        content.value =
+        var image = document.getElementById("imgView");
+        image.src = reader.result;
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h1>HTML5의 FILE API연습</h1>
+  <input type="file" name="" value="" id="file">
+  <input type="button" name="" value="읽기" onclick="readFile();"><br><br>
+
+  <h2>파일 정보</h2>
+  <img src="" alt="" id="imgView">
+  <div id="info"></div>
+</body>
+
+</html>

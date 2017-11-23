@@ -1,0 +1,61 @@
+widow.addEventListener("load", drawScreen, false);
+widow.addEventListener("keydown",onkeydown,true);
+
+var GAME_STATE_READY = 0; //준비상태
+var GAME_STATE_GAME = 1; //게임중
+var GAME_STATE_OVER = 2; //게임 오버
+
+var GameState = GAME_STATE_READY; // 초기값은 중지상태
+
+var intervalID;
+
+var arrMissiles = new Array();
+
+var imgBackground = new Image();
+imgBackground.src = "img/background.png";
+imgBackground.addEventListener("load", drawScreen, false);
+
+var imgPlayer = new Image();
+imgPlayer.src = "img/player.png";
+imgPlayer.addEventListener("load", drawScreen, false);
+
+var imgMissile = new Image();
+imgMissile.src = "img/missile.png";
+
+var intPlayerX = 350;
+var intPlayerY = 250;
+
+var intTime = 0; //살아남은 시간
+
+
+function drawScreen() {
+  var theCanvas = document.getElementById("GameCanvas");
+  var Context = theCanvas.getContext("2d");
+
+  Context.fillStyle = "#000000";
+  Context.fillRect(0, 0, 800, 600);
+
+  Context.drawImage(imgBackground, 0, 0);
+  Context.drawImage(imgPlayer, intPlayerX, intPlayerY);
+
+  Context.fillStyle = "#ffffff";
+  Context.font = "50px arial";
+  Context.textBaseline = "top";
+
+  if (GameState == GAME_STATE_READY) {
+    Context.fillText("준비", 330, 180);
+  } else if (GameState == GAME_STATE_GAME) {
+    for (var i = 0; i < arrMissiles.length; i++) {
+      Context.drawImage(imgMissile, arrMissiles[i].x, arrMissiles[i].y);
+    }
+  } else if (GameState == GAME_STATE_OVER) {
+    for (var i = 0; i < arrMissiles.length; i++) {
+      Context.drawImage(imgMissile, arrMissiles[i].x, arrMissiles[i].y);
+    }
+    Context.fillText("게임오버", 330, 180);
+  }
+
+  Context.font = "20px Arial";
+  Context.fillText("Time : " + intTime / 1000, 20, 5);
+  Context.fillText("총알 수 : " + arrMissiles.length, 680, 5);
+}

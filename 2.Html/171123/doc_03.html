@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>form객체및입력요소</title>
+  <script type="text/javascript">
+    /*
+    form객체와 그 하위객체들(입력요소들)
+    1. form객체 =><form>태그를 객체화 한 것
+      (document객체의 하위 객체)
+      <form name = "폼이름">
+      ...입력요소들...
+      </form>
+
+      -form객체를 자바스크립트로 처리하는 방법
+      1)document.form[첨자].속성 또는 메서드
+      2)document.폼이름.속성 또는 메서드
+      3)DOM API를 이용한 방법
+
+      -속성
+      1)action : form에서 전달한 데이터를 처리할 문서명
+      2)method : get 또는 post
+      3)encoding : enctype
+
+      -메서드
+      1)submit() -> form에서 구성한 데이터들을 서버로 전송한다.
+      2) reset();-> form에 입력요소의 값들을 초기화 시킨다
+
+    */
+    function test()
+    {
+      var form = document.forms[0]; // document.testForm과 동일
+      form.method = "post";
+      form.submit();
+
+      form.reset();
+    }
+  </script>
+  </head>
+  <body>
+<form class="" action="result.html" method="get" name = "testForm">
+  이름 : <input type="text" name="name" value="어쩌구"><br>
+  나이 : <input type="text" name="age"><br>
+  <input type="button" value="확인" onclick="test()">
+</form>
+  </body>
+</html>

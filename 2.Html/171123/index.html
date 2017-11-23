@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<script type="text/javascript">
+  function temp() {
+    var str = "";
+    str += document.testForm.textname.value + "씨\n";
+    for (var i = 0; i < document.testForm.sex.length; i++) {
+      if (document.testForm.sex[i].checked) {
+        str += "당신의 성별은 " + document.testForm.sex[i].value + "이고\n";
+      }
+    }
+    str += "당신의 취미는 ";
+    for (var i = 0; i < document.testForm.fb.length; i++) {
+      if (document.testForm.fb[i].checked) {
+        str += document.testForm.fb[i].value+ ",";
+      }
+    }
+    str = str.slice(0,-1);
+    str+="입니다.";
+    document.testForm.textareaa.innerHTML = str;
+  }
+</script>
+
+<body>
+  <form name="testForm">
+    이름 : <input type="text" name="textname" value="어쩌구"><br><br> 성별 : <input type="radio" name="sex" value="남자">남 <input type="radio" name="sex" value="여자">여 <br><br> 취미 : <input type="checkbox" name="fb" value="여행">여행
+    <input type="checkbox" name="fb" value="독서">독서
+    <input type="checkbox" name="fb" value="영화감상">영화감상
+    <input type="checkbox" name="fb" value="바둑">바둑
+    <input type="checkbox" name="fb" value="장기">장기
+    <input type="checkbox" name="fb" value="등산">등산
+    <input type="checkbox" name="fb" value="낚시">낚시 <br><br>
+    <input type="button" name="" value="결과출력" onclick="temp()"><br><br>
+    <textarea name="textareaa" rows="8" cols="80" id="ttt"></textarea>
+  </form>
+
+</body>
+
+</html>

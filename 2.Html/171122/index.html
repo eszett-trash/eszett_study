@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>온로드 이벤트</title>
+</head>
+<script src="script.js" charset="utf-8"></script>
+
+<body  id="test">
+  영어단어 : <input type="text" id="tempname" onchange="change()"><br><br>
+
+  <button type="button" name="button" onmousedown="change()">색바뀜</button><br><br>
+  <button type="button" name="button" onmousedown="onDown(this)" onmouseup="onUp(this)" ondblclick="onCLK(this)" onclick="onCLKb(this)">눌러보세요</button>
+  <br><br>
+
+  <div id="tempDiv" style="width :200px; height:200px;" onmouseover="onMV(this)" onmouseout="onOut(this)">
+    마우스를 이 위치 <br>위에 이동하세요
+
+  </div>
+
+          <!--
+            window 객체 : 웹브라우져 내장 객체중 최상위 객체 (웹브라우저 제어시 사용)
+                          window라는 이름으로 생서오디어 있고, 생략이 가능하다.
+
+                          -속성
+                            opener : 자식창에서 부모창을 가리키는 객체변수
+                          -메서드
+                            1.새 창을 만드는 메서드 open()
+                              형식 변수 = window.open("문서명 또는 URL주소","창이름","창속성");
+                              창이름 : 생략하면 새창이 게속 생성되고, 창이름을 지정하면 해당 창에 결과가 나타난다
+                              창속성 : 새창의 크기, 위치등을 지정한다.
+
+                            2. close() 창을 닫아준다
+                              window.close();
+                              close();
+                              self.close(); //위 세개는 현재창을 닫는 것
+                              변수.close(); //변수가 가리키는 자식창을 닫는다.
+         -->
+        <form>
+          <input type="button" value="새창만들기" onclick="WindowOpn()">
+          <input type="button" value="창 닫기" onclick="WindowCls()">
+        </form>
+
+        <!-- location 객체: 문서가 저장된 위치에 대한 정보를 관리하는 객체
+
+              URL주소
+              http://www.ddit.or.kr:80/main/index.html#one?name=param
+              프로토콜(protocol) : http, https
+              hostname(도메인) : www.ddit.or.kr
+              port :80
+              pathname : main/index.html
+              hash : #one
+              search : ?name=param
+
+              href : URL주소 전체
+
+              location.href ="새로운 문서명 또는 URL주소";
+              location.replace("새로운 문서명 또는 URL주소"); //기능은 동일
+              location.reload(); //F5
+           -->
+            <br>
+           <form name="testForm">
+             <input type="button" value="확인" onclick="testLocation()">
+           </form>
+
+          <div id="target">
+              <p>
+                This is text.,
+              </p>
+          </div>
+          <button onclick="changeColor()">시작</button>
+          <button onclick="stopChange()">중지</button>
+</body>
+
+</html>

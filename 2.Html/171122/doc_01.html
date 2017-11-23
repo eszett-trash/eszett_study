@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!--
+      window 객체 : 웹브라우져 내장 객체중 최상위 객체 (웹브라우저 제어시 사용)
+                    window라는 이름으로 생서오디어 있고, 생략이 가능하다.
+
+                    -속성
+                      opener : 자식창에서 부모창을 가리키는 객체변수
+                    -메서드
+                      1.새 창을 만드는 메서드 open()
+                        형식 변수 = window.open("문서명 또는 URL주소","창이름","창속성");
+                        창이름 : 생략하면 새창이 게속 생성되고, 창이름을 지정하면 해당 창에 결과가 나타난다
+                        창속성 : 새창의 크기, 위치등을 지정한다.
+
+                      2. close() 창을 닫아준다
+                        window.close();
+                        close();
+                        self.close(); //위 세개는 현재창을 닫는 것
+                        변수.close(); //변수가 가리키는 자식창을 닫는다.
+   -->
+          <form>
+            <input type="button" name="" value="open" onclick="WindowOpn()">
+          </form>
+
+  </body>
+</html>
