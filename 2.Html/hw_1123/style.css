@@ -1,0 +1,27 @@
+tr:first-child, input{
+  font-weight: bold;
+}
+td{
+  width:100px;
+  height: 50px;
+}
+td:first-child
+{
+  color:red;
+}
+td:nth-child(7)
+{
+  color:blue;
+}
+table
+{
+  background-color: rgb(167, 194, 226);
+  text-align: center;
+}
+#left_btn,#right_btn
+{
+  background-color: black;
+  color:white;
+  width:80px;
+  height: 35px;
+}
