@@ -5,9 +5,8 @@ import java.util.Vector;
 
 public class ProductTest {
 	public static void main(String[] args) {
-		Sales s = new Sales();
-		s.main();
-
+		Buyer b = new Buyer();
+		
 	}
 }
 
@@ -78,6 +77,20 @@ class Buyer {
 	// 매개변수마다 다 다른 클래스를 넣어줘야 하지만 이렇게 하면 Product클래스만으로 전부 관리 할 수 있다.
 	// 오버로드의 필요성도 줄어듦
 	void buy(Product p) {
+		while(true)
+		{
+			Scanner s = new Scanner(System.in);
+			int input = s.nextInt();
+			
+			if(input == 999)
+			{
+				break;
+			}
+			else
+			{
+				
+			}
+		}
 		if (money < p.price) {
 			System.out.println("나가");
 		} else {
@@ -85,6 +98,7 @@ class Buyer {
 			System.out.println(p + "를 구입하셨습니다.");
 		}
 
+		
 	}
 
 	void summary() {
@@ -107,16 +121,7 @@ class Buyer {
 		System.out.println("보너스 포인트 : " + nokoriPoint);
 		System.out.println("===============================");
 		
-		while(true)
-		{
-			Scanner s = new Scanner(System.in);
-			int input = s.nextInt();
-			
-			if(input == 999)
-			{
-				break;
-			}
-		}
+
 
 	}
 
@@ -140,33 +145,6 @@ class Buyer {
 			}
 		}
 		s.close();
-
-	}
-}
-
-class Sales {
-
-	/* 아이디 입력받아서 아이디가 없으면 추가 있으면 그 사람 구매목록에 추가 */
-	Vector<Buyer> user = new Vector<Buyer>();
-	Buyer b = new Buyer();
-	
-	void sales(Buyer b) {
-
-		user.add(b);
-		System.out.println(user);
-	}
-
-	void main() {
-		Scanner s = new Scanner(System.in);
-		System.out.println("신규유저이면 999, 아니면 아이디를 입력 해 주세요.");
-		int a = s.nextInt();
-
-		if (a == 999) {
-			user.add(user.size(), b);
-			b.summary();
-		} else {
-			user.get(a);
-		}
 
 	}
 }

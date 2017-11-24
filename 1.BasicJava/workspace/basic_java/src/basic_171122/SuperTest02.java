@@ -2,7 +2,14 @@ package basic_171122;
 
 public class SuperTest02 {
 	public static void main(String[] args) {
-		Point3D p3 = new Point3D(100,100,100);
+		
+		int flag = 0;
+		
+		flag |= 1024;
+		
+		System.out.println(Integer.toBinaryString(flag));
+		
+//		Point3D p3 = new Point3D(100,100,100);
 	}
 }
 
