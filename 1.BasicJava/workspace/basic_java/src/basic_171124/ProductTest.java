@@ -8,9 +8,20 @@ public class ProductTest {
 
 		Scanner sc = new Scanner(System.in);
 		String name = sc.next();
-		Buyer b = new Buyer(1000, name);
+		
+		NoteBook nb = new NoteBook();
+		Buyer b1 = new Buyer(1000, name);
+		Buyer b2 = new Buyer(1000, "김");
+		Buyer b3 = new Buyer(1000, "이");
 		Customer cus = new Customer();
-		cus.addCustomer(b);
+		cus.addCustomer(b1);
+		cus.upDate(b1, b1.money);
+		b1.buy(nb);
+		b1.buy(nb);
+		b1.buy(nb);
+		b1.buy(nb);
+		cus.upDate(b1, b1.money);
+
 		
 		System.out.println(cus.toString());
 	}
