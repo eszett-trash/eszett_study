@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>폼 입력 검증</title>
+</head>
+<style media="screen">
+
+</style>
+<script type="text/javascript">
+function view() {
+  var str = document.regForm.txtData.value;
+  // var reg = /^[a-z]\w{7,19}$/;    //id
+  //var reg = /(^[a-z][!|#|&|-|a-z]@[a-zA-Z]{2,}.[com|co|net]){4,12}/;   //이메일
+  var reg = /^[a-zA-Z]([!-/]+|[a-z]+|[A-Z]+|[0-9]+){7,19}/;
+  if (!reg.test(str)) {
+    alert("올바르게 입력 해 주세요");
+  } else {
+    alert("정규식에 맞습니다.");
+  }
+}
+</script>
+
+<body>
+  <form class="" name ="regForm">
+    <fieldset style="width : 400px;">
+
+    <legend>
+      회원정보입력
+    </legend>
+    <table>
+      <tr>
+        <td>아이디</td>
+        <td><input type="text" name ="txtData">
+
+        </td>
+        <td><input type="button" name="" value="id검사" onclick="view()">
+        </td>
+      </tr>
+      <tr>
+        <td>패스워드</td>
+        <td><input type="text">
+
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>패스워드 확인</td>
+        <td><input type="text">
+
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>이름</td>
+        <td><input type="text">
+
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>성별</td>
+        <td><input type="radio" value="man" name="sex">남자<input type="radio" value="women" name="sex">여자
+
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>휴대폰번호</td>
+        <td><input type="text">
+
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>이메일</td>
+        <td><input type="text">
+
+        </td>
+        <td></td>
+      </tr>
+    </table>
+
+  </fieldset>
+    <input type="submit" name="" value="제출"> <input type="reset" name="" value="초기화">
+  </form>
+</body>
+
+</html>

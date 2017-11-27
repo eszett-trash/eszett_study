@@ -6,88 +6,25 @@ public class PrintMain {
 	public static void main(String[] args) {
 		Print print = new Print();
 
-		print.temp();
 	}
 }
 
-class Print {
+class Print implements IObserver{
+
 
 	Scanner s = new Scanner(System.in);
 	int button;
 
-	boolean temp() {
-		int cart = 0;
-
-		ToppingVO tv = new ToppingVO();
-
-		while (true) {
-			switch (s.nextInt()) {
-			case 1:
-				cart += tv.getOnion();
-				break;
-			case 2:
-				cart += tv.getPiman();
-				break;
-			case 3:
-				cart += tv.getHouren();
-				break;
-			case 4:
-				cart += tv.getSpinach();
-				break;
-			case 5:
-				cart += tv.getFineapple();
-				break;
-			case 6:
-				cart += tv.getOlive();
-				break;
-			case 7:
-				cart += tv.getMushroom();
-				break;
-			case 8:
-				cart += tv.getCornsalard();
-				break;
-			case 9:
-				cart += tv.getMayo();
-				break;
-			case 10:
-				cart += tv.getGarlic();
-				break;
-			case 11:
-				cart += tv.getHalapiona();
-				break;
-			case 12:
-				cart += tv.getCamemvert();
-				break;
-			case 13:
-				cart += tv.getPepperonni();
-				break;
-			case 14:
-				cart += tv.getRossham();
-				break;
-			case 15:
-				cart += tv.getSausage();
-				break;
-			case 16:
-				cart += tv.getItaliansausage();
-				break;
-			case 17:
-				cart += tv.getPanzeta();
-				break;
-			case 18:
-				cart += tv.getDblCheese();
-				break;
-			case 19:
-				cart += tv.getBacon();
-				break;
-			case 20:
-				cart += tv.getEnchoubi();
-				break;
-			default:
-				System.out.println("없는 토핑입니다.");
-				break;
-			}
-			System.out.println(cart);
-		}
+//	boolean temp() {
+//		int cart = 0;
+//
+//		return false;
+//	}
+	
+	@Override
+	public boolean update() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	boolean main() {

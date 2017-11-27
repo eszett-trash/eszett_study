@@ -5,8 +5,14 @@ import java.util.Vector;
 
 public class ProductTest {
 	public static void main(String[] args) {
-		Buyer b = new Buyer();
+
+		Scanner sc = new Scanner(System.in);
+		String name = sc.next();
+		Buyer b = new Buyer(1000, name);
+		Customer cus = new Customer();
+		cus.addCustomer(b);
 		
+		System.out.println(cus.toString());
 	}
 }
 
@@ -60,6 +66,7 @@ class Styler extends Product {
 class Buyer {
 	int money = 1000000;
 	int bonusPoint;
+	String name;
 
 	int fullPrice = 0;
 	int nokorikane = 0;
@@ -70,27 +77,16 @@ class Buyer {
 
 	}
 
-	Buyer(int money) {
+	Buyer(int money, String name) {
 		this.money = money;
+		this.name = name;
+		Customer cs;
 	}
 
 	// 매개변수마다 다 다른 클래스를 넣어줘야 하지만 이렇게 하면 Product클래스만으로 전부 관리 할 수 있다.
 	// 오버로드의 필요성도 줄어듦
 	void buy(Product p) {
-		while(true)
-		{
-			Scanner s = new Scanner(System.in);
-			int input = s.nextInt();
-			
-			if(input == 999)
-			{
-				break;
-			}
-			else
-			{
-				
-			}
-		}
+
 		if (money < p.price) {
 			System.out.println("나가");
 		} else {
@@ -98,7 +94,6 @@ class Buyer {
 			System.out.println(p + "를 구입하셨습니다.");
 		}
 
-		
 	}
 
 	void summary() {
@@ -120,8 +115,21 @@ class Buyer {
 		System.out.println("남은 돈 : " + nokorikane);
 		System.out.println("보너스 포인트 : " + nokoriPoint);
 		System.out.println("===============================");
-		
 
+		System.out.println("계산 : 1 수정 : 2");
+		Scanner s = new Scanner(System.in);
+
+		while (true) {
+			switch (s.nextInt()) {
+			case 1:
+				System.out.println("감사합니다~^^");
+				System.exit(0);
+				break;
+			case 2:
+				refund();
+			default:
+			}
+		}
 
 	}
 
@@ -140,6 +148,7 @@ class Buyer {
 				break;
 			} else if (input < item.size()) {
 				item.remove(input);
+				summary();
 			} else {
 				System.out.println("다시 입력 해 주 세요");
 			}
@@ -147,4 +156,72 @@ class Buyer {
 		s.close();
 
 	}
+}
+
+class Customer {
+	private Vector<Buyer> b = new Vector<Buyer>();
+	int customerNum;
+	// 고객 추가
+
+	void addCustomer(Buyer buyer) {
+		boolean flag = false;
+		customerNum = b.size();
+
+		for (int i = 0; i < b.size(); i++) {
+			if (buyer.name == b.get(i).name) {
+				flag = true; // 기존고객이면 true반환
+				customerNum = i;
+			}
+		}
+
+		b.add(customerNum, buyer);
+	}
+
+	// 고객 삭제 (매개변수로 이름을 받아서 해당 이름을 가진 사람을 삭제)
+
+	void removeCustomer(Buyer buyer) {
+		boolean flag = false;
+		customerNum = 0;
+
+		for (int i = 0; i < b.size(); i++) {
+			if (buyer.name == b.get(i).name) {
+				flag = true; // 기존고객이면 true반환
+				customerNum = i;
+			}
+		}
+
+		if (flag) {
+			b.remove(customerNum);
+		} else {
+			System.out.println("존재하지 않는 고객입니다.");
+		}
+	}
+
+	// 고객수정 (이름과 돈을 받아서 기존금액에서 금액 추가)
+	void upDate(Buyer buyer, int money) {
+		boolean flag = false;
+		customerNum = 0;
+
+		for (int i = 0; i < b.size(); i++) {
+			if (buyer.name == b.get(i).name) {
+				flag = true; // 기존고객이면 true반환
+				customerNum = i;
+			}
+		}
+
+		if (flag) {
+			b.get(customerNum).money = money;
+		} else {
+			System.out.println("존재하지 않는 고객입니다.");
+		}
+		
+	}
+
+	@Override
+	public String toString() {
+		b.get(customerNum).summary();
+		return "";
+	}
+	
+
 }

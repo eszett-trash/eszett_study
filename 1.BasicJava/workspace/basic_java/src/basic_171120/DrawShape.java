@@ -1,4 +1,4 @@
-package basic_17120;
+package basic_171120;
 
 import java.awt.Color;
 import java.awt.Frame;

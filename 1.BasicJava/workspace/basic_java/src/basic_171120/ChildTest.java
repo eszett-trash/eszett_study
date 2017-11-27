@@ -1,4 +1,4 @@
-package basic_17120;
+package basic_171120;
 
 public class ChildTest {
 	public static void main(String[] args) {
