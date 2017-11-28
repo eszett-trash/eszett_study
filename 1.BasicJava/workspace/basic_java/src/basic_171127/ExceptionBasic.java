@@ -38,6 +38,24 @@ public static void main(String[] args) {
 			throw e;
 			
 			throw new Exception();
+	
+	5. throws Exception
+		-메서드 예외 선언하기
+			:메서드의 선언부에 키워드 throws를 사용해 메서드내에서 발생 할 수 있는 예외를 적어주기만 하면 된다.
+	
+	6. finally
+		-try-catch블럭의 예외발생에 상관 없이 실행되어야 할 코드를 포함한다.
+		try{
+			예외가 발생 할 수 있는 문장들
+		}catch(Exception e){
+			예외처리를 위한 문장
+		}finally{
+			무조건 마지막에 수행
+		}
+		순서
+			-try ->catch ->finally
+			-try ->finally
+		
 	 */
 }
 }

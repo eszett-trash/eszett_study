@@ -6,84 +6,128 @@
   <title>폼 입력 검증</title>
 </head>
 <style media="screen">
-
 </style>
 <script type="text/javascript">
-function view() {
-  var str = document.regForm.txtData.value;
-  // var reg = /^[a-z]\w{7,19}$/;    //id
-  //var reg = /(^[a-z][!|#|&|-|a-z]@[a-zA-Z]{2,}.[com|co|net]){4,12}/;   //이메일
-  var reg = /^[a-zA-Z]([!-/]+|[a-z]+|[A-Z]+|[0-9]+){7,19}/;
-  if (!reg.test(str)) {
-    alert("올바르게 입력 해 주세요");
-  } else {
-    alert("정규식에 맞습니다.");
+  function view() {
+    var str = document.regForm.txtData.value;
+    var reg = /^[a-z]\w{7,19}$/; //id
+
+    if (!reg.test(str)) {
+      alert("올바르게 입력 해 주세요");
+    } else {
+      alert("정규식에 맞습니다.");
+    }
   }
-}
+
+  function idchk() {
+    var flag = true;
+    var str1 = document.regForm.namepwd.value;
+    var reg1 = /^[a-zA-Z]([!#&-]+|[a-z]+|[A-Z]+|[0-9]+){7,19}$/;
+    if (!reg1.test(str1)) {
+      alert("올바르게 비밀번호를 입력 해 주세요");
+      flag = false;
+    }
+    var str2 = document.regForm.namepwdchk.value;
+    if (str1 != str2) {
+      alert("비밀번호가 서로 다릅니다");
+      flag = false;
+    }
+    var str3 = document.regForm.namename.value;
+    var reg3 = /^[가-힣]{2,6}$/; //id
+    if (!reg3.test(str3)) {
+      alert("올바르게 이름을 입력 해 주세요");
+      flag = false;
+    }
+    var str6 = document.regForm.namebirth.value;
+    var reg6 = /^(\d+)[/|\-|\s]+[0|1](\d)[/|\-|\s]+([0|1|2|3]\d)$/; //id
+    if (!reg6.test(str6)) {
+      alert("올바르게 생일을 입력 해 주세요");
+      flag = false;
+    }
+    var str4 = document.regForm.nameph.value;
+    var reg4 = /^(01)[0-1|6-9]-[1-9]\d{3}-\d{4}$/;
+    if (!reg4.test(str4)) {
+      alert("올바르게 폰번을 입력 해 주세요");
+      flag = false;
+    }
+    var str5 = document.regForm.namemail.value;
+    var reg5 = /(^[a-z][!|#|&|-|a-z]?{2,10}@[a-zA-Z]{2,}.[com|co|net]){4,12}/;
+    if (!reg5.test(str5)) {
+      alert("올바르게 메일을 입력 해 주세요");
+      flag = false;
+    }
+  }
 </script>
 
 <body>
-  <form class="" name ="regForm">
+  <form class="" name="regForm">
     <fieldset style="width : 400px;">
 
-    <legend>
-      회원정보입력
-    </legend>
-    <table>
-      <tr>
-        <td>아이디</td>
-        <td><input type="text" name ="txtData">
+      <legend>
+        회원정보입력
+      </legend>
+      <table>
+        <tr>
+          <td>아이디</td>
+          <td><input type="text" name="txtData">
 
-        </td>
-        <td><input type="button" name="" value="id검사" onclick="view()">
-        </td>
-      </tr>
-      <tr>
-        <td>패스워드</td>
-        <td><input type="text">
+          </td>
+          <td><input type="button" name="" value="id검사" onclick="view()">
+          </td>
+        </tr>
+        <tr>
+          <td>패스워드</td>
+          <td><input type="password" name="namepwd">
 
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>패스워드 확인</td>
-        <td><input type="text">
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>패스워드 확인</td>
+          <td><input type="password" name="namepwdchk">
 
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>이름</td>
-        <td><input type="text">
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>이름</td>
+          <td><input type="text" name="namename">
 
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>성별</td>
-        <td><input type="radio" value="man" name="sex">남자<input type="radio" value="women" name="sex">여자
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>생년월일</td>
+          <td><input type="text" name="namebirth">
 
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>휴대폰번호</td>
-        <td><input type="text">
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>성별</td>
+          <td><input type="radio" value="man" name="sex">남자<input type="radio" value="women" name="sex">여자
 
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>이메일</td>
-        <td><input type="text">
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>휴대폰번호</td>
+          <td><input type="text" name="nameph">
 
-        </td>
-        <td></td>
-      </tr>
-    </table>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>이메일</td>
+          <td><input type="text" name="namemail">
 
-  </fieldset>
-    <input type="submit" name="" value="제출"> <input type="reset" name="" value="초기화">
+          </td>
+          <td></td>
+        </tr>
+      </table>
+
+    </fieldset>
+    <input type="submit" name="" value="제출" onclick="idchk()"> <input type="reset" name="" value="초기화">
   </form>
 </body>
 

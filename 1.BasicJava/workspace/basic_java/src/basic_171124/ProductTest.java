@@ -8,7 +8,7 @@ public class ProductTest {
 
 		Scanner sc = new Scanner(System.in);
 		String name = sc.next();
-		
+
 		NoteBook nb = new NoteBook();
 		Buyer b1 = new Buyer(1000, name);
 		Buyer b2 = new Buyer(1000, "김");
@@ -22,7 +22,6 @@ public class ProductTest {
 		b1.buy(nb);
 		cus.upDate(b1, b1.money);
 
-		
 		System.out.println(cus.toString());
 	}
 }
@@ -80,8 +79,6 @@ class Buyer {
 	String name;
 
 	int fullPrice = 0;
-	int nokorikane = 0;
-	int nokoriPoint = 0;
 	Vector<Product> item = new Vector<Product>();
 
 	Buyer() {
@@ -119,12 +116,12 @@ class Buyer {
 					+ item.get(i).price);
 			fullPrice += item.get(i).price;
 		}
-		nokorikane = (money - fullPrice);
-		nokoriPoint = (int) (fullPrice * 0.03);
+		money = (money - fullPrice);
+		bonusPoint = (int) (fullPrice * 0.03);
 		System.out.println(". . . .  . . . . . . . . . . . .");
 		System.out.println("총 금액 : " + fullPrice);
-		System.out.println("남은 돈 : " + nokorikane);
-		System.out.println("보너스 포인트 : " + nokoriPoint);
+		System.out.println("남은 돈 : " + money);
+		System.out.println("보너스 포인트 : " + bonusPoint);
 		System.out.println("===============================");
 
 		System.out.println("계산 : 1 수정 : 2");
@@ -171,36 +168,33 @@ class Buyer {
 
 class Customer {
 	private Vector<Buyer> b = new Vector<Buyer>();
-	int customerNum;
+	int customerNum = b.size();
+	boolean flag = true; // 기존유저면 false리턴
+
+	boolean flagManage(Buyer buyer) {
+		for (int i = 0; i < b.size(); i++) {
+			if (buyer.name == b.get(i).name) {
+				customerNum = i;
+				flag = false;
+			}
+		}
+		return false;
+	}
+
 	// 고객 추가
 
 	void addCustomer(Buyer buyer) {
-		boolean flag = false;
-		customerNum = b.size();
-
-		for (int i = 0; i < b.size(); i++) {
-			if (buyer.name == b.get(i).name) {
-				flag = true; // 기존고객이면 true반환
-				customerNum = i;
-			}
+		if (flag) {
+			b.add(customerNum, buyer);
+		} else {
+			System.out.println("기존 고객입니다.");
 		}
 
-		b.add(customerNum, buyer);
 	}
 
 	// 고객 삭제 (매개변수로 이름을 받아서 해당 이름을 가진 사람을 삭제)
 
-	void removeCustomer(Buyer buyer) {
-		boolean flag = false;
-		customerNum = 0;
-
-		for (int i = 0; i < b.size(); i++) {
-			if (buyer.name == b.get(i).name) {
-				flag = true; // 기존고객이면 true반환
-				customerNum = i;
-			}
-		}
-
+	void removeCustomer() {
 		if (flag) {
 			b.remove(customerNum);
 		} else {
@@ -210,22 +204,12 @@ class Customer {
 
 	// 고객수정 (이름과 돈을 받아서 기존금액에서 금액 추가)
 	void upDate(Buyer buyer, int money) {
-		boolean flag = false;
-		customerNum = 0;
-
-		for (int i = 0; i < b.size(); i++) {
-			if (buyer.name == b.get(i).name) {
-				flag = true; // 기존고객이면 true반환
-				customerNum = i;
-			}
-		}
-
 		if (flag) {
 			b.get(customerNum).money = money;
 		} else {
-			System.out.println("존재하지 않는 고객입니다.");
+			addCustomer(buyer);
 		}
-		
+
 	}
 
 	@Override
@@ -233,6 +217,5 @@ class Customer {
 		b.get(customerNum).summary();
 		return "";
 	}
-	
 
 }

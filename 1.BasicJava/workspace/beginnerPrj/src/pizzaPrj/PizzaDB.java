@@ -1,80 +1,89 @@
 package pizzaPrj;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.sqlite.SQLiteConfig;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class PizzaDB {
+	// 유저
+	private List<UserVO> userVo = new ArrayList<UserVO>();
+	// 메뉴
+	private List<MenuVO> menuVo = new ArrayList<MenuVO>();
+	// 추가/사이즈등등등
+	private List<AdditionalVO> additionalVo = new ArrayList<AdditionalVO>();
+	// 장바구니 (유저에 종속되어야 함)
+	private List<CartVO> cartVo = new LinkedList<CartVO>();
 
-	private Connection connection;
-	private String dbFileName;
-	private boolean isOpened = false;
+	PizzaDB() {
+		// 최고관리자 생성
+		UserVO uv = new UserVO();
+		uv.setEmail("admin");
+		uv.setPwd("q1234q");
+		uv.setAdmin(true);
+		userVo.add(uv);
 
-	private final static String QUERY_SELECT_BY_NAME = "SELECT * FROM media WHERE FilePath=?;";
-	private final static String QUERY_SELECT_BY_NAME_HASHCODE = "SELECT * FROM media WHERE FilePath=? AND CheckSum=?;";
-	private final static String QUERY_SELECT_THUMBNAIL = "SELECT Thumbnail FROM media WHERE FilePath=?;";
-	public final static String DATABASE = "PIZZA_REGE.db";
-	static {
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (Exception e) {
-			e.printStackTrace();
+		UserVO uv2 = new UserVO();
+		uv2.setEmail("qwer");
+		uv2.setPwd("q1234q");
+		userVo.add(uv2);
+	}
+
+	// 로그인
+	public int login(String email, String pwd) {
+		for (int i = 0; i < userVo.size(); i++) {
+			if (userVo.get(i).getEmail().equals(email)) {
+				if (userVo.get(i).getPwd().equals(pwd)) {
+					if (userVo.get(i).isAdmin()) {
+						System.out.println("관리자입니다");
+						return 1;
+					} else {
+						System.out.println("일반 유저입니다.");
+						return 0;
+					}
+				} else {
+					System.out.println("비밀번호 입력 오류");
+					return -1;
+				}
+			}
 		}
+		return -1;
 	}
 
-	public PizzaDB(String databaseFileName) {
-		this.dbFileName = databaseFileName;
-	}
-
-	public boolean open() {
-		try { // 읽기 전용
-			SQLiteConfig config = new SQLiteConfig();
-			config.setReadOnly(true);
-			this.connection = DriverManager.getConnection("jdbc:sqlite:/"
-					+ this.dbFileName, config.toProperties());
-		} catch (SQLException e) {
-			e.printStackTrace();
+	// 회원가입
+	public boolean join(String nickname, String email, String password,
+			String address, int hp, boolean isAdmin) {
+		if (nickname == null || email == null || password == null
+				|| address == null || hp == 0) {
+			System.out.println("입력란을 전부 채워주세요");
 			return false;
-		}
-		isOpened = true;
-		return true;
-	}
-
-	public boolean close() {
-		if (this.isOpened == false) {
+		} else {
+			for (int i = 0; i < userVo.size(); i++) {
+				if (userVo.get(i).getEmail().equals(email)) {// 아이디가 같으면
+					System.out.println("이미 존재하는 이메일입니다.");
+					return false;
+				}
+			}
+			UserVO uv = new UserVO();
+			uv.setNickname(nickname);
+			uv.setEmail(email);
+			uv.setPwd(password);
+			uv.setAddress(address);
+			uv.setPhone(hp);
+			if (!uv.isAdmin()) {
+				uv.setAdmin(true);
+			}
+			userVo.add(uv);
 			return true;
 		}
-		try {
-			this.connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
 	}
 
-	public boolean readMeta(String filePath, String hashCode)
-			throws SQLException {
-		if (this.isOpened == false) {
-			return false;
+	public void show_admin() {
+		for (int i = 0; i < userVo.size(); i++) {
+			if (userVo.get(i).isAdmin()) {
+				System.out.println("닉네임 : " + userVo.get(i).getNickname());
+				System.out.println("이메일 : " + userVo.get(i).getEmail());
+			}
 		}
-		boolean result = false;
-		String query = "SELECT * FROM media WHERE FilePath=? AND CheckSum=?;";
-		PreparedStatement prep = this.connection.prepareStatement(query);
-		prep.setString(1, filePath);
-		prep.setString(2, hashCode);
-		ResultSet row = prep.executeQuery();
-		if (row.next()) {
-			row.getString(1); // index 로 가져오기
-			row.getString("FileSize"); // field 이름으로 가져오기
-			result = true;
-		}
-		row.close();
-		prep.close();
-		return result;
 	}
+
 }

@@ -5,128 +5,114 @@ import java.util.Scanner;
 public class PrintMain {
 	public static void main(String[] args) {
 		Print print = new Print();
-
+		print.main();
 	}
 }
 
-class Print implements IObserver{
-
+class Print {
 
 	Scanner s = new Scanner(System.in);
+	PizzaDB pd = new PizzaDB();
 	int button;
-
-//	boolean temp() {
-//		int cart = 0;
-//
-//		return false;
-//	}
-	
-	@Override
-	public boolean update() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	boolean main() {
 		System.out.println("메인메뉴");
 		System.out.println();
 		System.out.println("1. 회원가입 2.로그인");
-
+		System.out.println("모든 메뉴에서 999는 종료입니다.");
 		while (true) {
 			button = s.nextInt();
 
 			switch (button) {
 			case 1:
-				join();
+				join(false);
 				break;
 			case 2:
 				login();
 				break;
-
 			case 999:
 				return false;
-
 			default:
 				System.out.println("다시 입력 해 주세요");
 			}
 		}
 	}
 
-	boolean join() {
-		System.out.println("회원가입");
-		System.out.println();
-		System.out.println("닉네임 입력");
-		System.out.println("이메일 입력");
-		System.out.println("비밀번호 입력");
-		System.out.println("주소 입력");
-		System.out.println("핸드폰 번호 입력");
+	boolean join(boolean isAdmin) {
 
-		/* 전부 출력 */
-
-		System.out.println("가입 하시겠습니까?");
-		System.out.println("1. Y 2.N");
 		while (true) {
+			System.out.println("회원가입");
+			System.out.println();
+			System.out.println("닉네임 입력");
+			String nickname = s.next();
+			System.out.println("이메일 입력");
+			String email = s.next();
+			System.out.println("비밀번호 입력");
+			String password = s.next();
+			System.out.println("주소 입력");
+			String address = s.next();
+			System.out.println("핸드폰 번호 입력");
+			int hp = s.nextInt();
+
+			System.out.println("가입 하시겠습니까?");
+			System.out.println("1. Y 2.N");
+
 			button = s.nextInt();
 
 			switch (button) {
 			case 1:
-				/* (디비등록과정잇음) */
-
+				if (pd.join(nickname, email, password, address, hp, isAdmin)) {
+					System.out.println("가입 성공!");
+					main();
+					break;
+				} else {
+					join(false);
+					break;
+				}
 			case 2:
-				login();
+				main();
 				break;
-
 			case 999:
 				return false;
-
 			default:
 				System.out.println("다시 입력 해 주세요");
 			}
 		}
 	}
 
-	boolean login() {
-		System.out.println("아이디");
-		String idinput = s.next();
-		System.out.println("비밀번호");
-		String pwInput = s.next();
-		/* 입력된 값과 비교해서 맞으면 들어가기 아님 나가기 */
-		/* 관리자단에 등록 된 아이디면 관리자메뉴 출력 */
-		System.out.println("임시 : 관리자 1/ 유저 2");
+	void login() {
 		while (true) {
-			button = s.nextInt();
-
-			switch (button) {
+			System.out.println("이메일");
+			String mailinput = s.next();
+			System.out.println("비밀번호");
+			String pwInput = s.next();
+			switch (pd.login(mailinput, pwInput)) {
+			case 0:
+				show_event();
+				break;
 			case 1:
 				admin_menu();
 				break;
-			case 2:
-				show_event();
-				break;
-
-			case 999:
-				return false;
-
 			default:
 				System.out.println("다시 입력 해 주세요");
+				break;
 			}
 		}
 	}
 
 	// 관리자단
 	boolean admin_menu() {
-		System.out.println("관리자 메뉴");
-		System.out.println("");
-		System.out.println("1. 관리자 관리");
-		System.out.println("2. 재고 관리");
-		System.out.println("3. 메뉴관리");
-		System.out.println("4. 이벤트 관리");
-		System.out.println("5. 매출 관리");
-		System.out.println();
-		System.out.println("6. 소비자 화면으로");
 		while (true) {
+			System.out.println("관리자 메뉴");
+			System.out.println("");
+			System.out.println("1. 관리자 관리");
+			System.out.println("2. 재고 관리");
+			System.out.println("3. 메뉴관리");
+			System.out.println("4. 이벤트 관리");
+			System.out.println("5. 매출 조회");
+			System.out.println();
+			System.out.println("6. 소비자 화면으로");
 			button = s.nextInt();
-
 			switch (button) {
 			case 1:
 				admin_management();
@@ -151,13 +137,29 @@ class Print implements IObserver{
 				System.out.println("다시 입력 해 주세요");
 			}
 		}
-
 	}
 
 	boolean admin_management() {
-		System.out.println("1. 관리자 리스트 보기");
-		System.out.println("2. 관리자 추가");
-		return false;
+		while (true) {
+			System.out.println("관리자 관리");
+			System.out.println();
+			System.out.println("1. 관리자 리스트 보기");
+			System.out.println("2. 관리자 추가");
+			button = s.nextInt();
+			switch (button) {
+			case 1:
+				pd.show_admin();
+				break;
+			case 2:
+				join(true);
+				break;
+			case 999:
+				return false;
+
+			default:
+				break;
+			}
+		}
 	}
 
 	boolean inventory_management() {
@@ -182,7 +184,7 @@ class Print implements IObserver{
 	}
 
 	boolean view_sales() {
-		System.out.println("매출 관리");
+		System.out.println("매출 조회");
 		/* 매출 전부 출력 */
 		return false;
 	}

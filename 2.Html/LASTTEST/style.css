@@ -1,0 +1,155 @@
+html {
+  margin: 0;
+  padding: none;
+  color :#666666;
+}
+
+body {
+  margin: 0 auto;
+  width: 960px;
+  height: 1200px;
+  font-size: 15px;
+}
+h1{
+  color:#6a6a6a;
+  text-align: center;
+  font-size: 20px;
+}
+header {
+  height: 200px;
+  width: 100%;
+}
+
+main {
+  height: 350px;
+  width: 100%;
+  overflow: hidden;
+}
+a{
+  text-decoration:none;
+  color:#6a6a6a;
+}
+li{
+  display: inline;
+}
+#main_text{
+  background-color: white;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  width:200px;
+  height: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  top:115px;
+  opacity: 0.7;
+  padding: 15px 50px;
+  border-radius: 15px;
+
+}
+
+.bd{
+  color : #009688;
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+}
+.bd2{
+  padding: 0;
+  margin: 0;
+}
+content {
+  height: 500px;
+  width: 100%;
+  background-color: pink;
+}
+
+footer {
+  height: 150px;
+  width: 100%;
+  background-color: #009688;
+  color:white;
+  font-size : 12px;
+}
+footer .left{
+  width:40%;
+  float: left;
+  margin-top: 30px;
+}
+footer .left ul li{
+  margin:15px;
+}
+footer .right{
+  width: 50%;
+  margin: 10px;
+  float: right;
+}
+
+#main_menu li {
+  position: relative;
+  top : -30px;
+}
+#submenu{
+  background-color: white;
+  list-style: none;
+  z-index: 1;
+}
+#submenu li{
+  display: inherit;
+}
+
+
+#logo {
+  width: 250px;
+}
+
+#left {
+  width: 50%;
+  float: left;
+}
+#left table{
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-top: 1px solid #6a6a6a;
+}
+
+#left table tr:first-child{
+  font-weight: bold;
+  text-align: center;
+}
+#left table tr:nth-child(2n){
+background-color: lime;
+}
+
+#right {
+  width: 50%;
+  float: right;
+}
+#right p{
+  display: inline;
+}
+#right p:first-child{
+  text-align: right;
+}
+#right p:nth-child(2)
+{
+  text-align: right;
+}
+
+#bottom {
+  clear: both;
+  text-align: center;
+}
+#bottom ul{
+
+}
+#bottom ul li{
+  background-color: #009688;
+  padding: 5px 10px;
+  margin: 0px 30px;
+  border-radius: 10px;
+
+}
+#bottom ul li a{
+  color:white;
+}
