@@ -6,16 +6,17 @@
   <title>한국대학교 총동문회</title>
   <script src="js/script.js" charset="utf-8"></script>
   <script src="js/jquery-1.12.3.js" charset="utf-8"></script>
+  <script src="http://malsup.github.com/jquery.cycle2.js" charset="utf-8"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body onload="start()">
   <header>
+  <img src="img/logo.png" alt="logo" id="logo">
     <ul id="main_menu">
-      <img src="img/logo.png" alt="logo" id="logo">
       <li><a href ="#">대학원 소개</a></li>
       <li><a href ="#">동문회 소개</a>
-          <ul id="submenu">
+          <ul id="submenu1">
             <li><a href = "#">동문회 소개</a></li>
             <li><a href = "#">동문회 조직도</a></li>
             <li><a href = "#">임원 리스트</a></li>
@@ -23,7 +24,7 @@
           </ul>
       </li>
       <li><a href ="#">커뮤니티</a>
-        <ul id="submenu">
+        <ul id="submenu2">
           <li><a href = "#">동문 경조사</a></li>
           <li><a href = "#">동문행사일정</a></li>
           <li><a href = "#">사용자매뉴얼</a></li>
@@ -32,13 +33,15 @@
     </ul>
   </header>
   <main>
-    <img src="img\images (1).jpg" alt="">
-    <img src="img\images (2).jpg" alt="">
-    <img src="img\images (3).jpg" alt="">
-    <img src="img\images (4).jpg" alt="">
-    <img src="img\images (5).jpg" alt="">
     <div id="main_text">
       <p class="bd">환영합니다!</p> <br><p class ="bd2">한국대학교 동문여러분</p>
+    </div>
+    <div class = "cycle-slideshow" cycle-slideshow data-cycle-loader="wait" data-cycle-timeout=1000>
+      <img src="img/images (1).jpg" alt="">
+      <img src="img/images (2).jpg" alt="">
+      <img src="img/images (3).jpg" alt="">
+      <img src="img/images (4).jpg" alt="">
+      <img src="img/images (5).jpg" alt="">
     </div>
 
   </main>
@@ -83,10 +86,12 @@
     <div id="right">
       <h1>Partner</h1>
       <img src="img/partner.jpg" alt="partner">
-      <p>능력을 담다 <br> 희망을 담다 <br></p>
-      <p>- 센서알고리즘 개발</p> <br><p>- 인공지능 로봇연구</p><br><p>- 전자보안제품 생산</p>
+      <img src="img/eee.png" alt="logo" id ="te">
+      <br>
+      <p id = "pl">- 센서알고리즘 개발</p> <br><p id = "pc">- 인공지능 로봇연구</p><br><p id = "pr">- 전자보안제품 생산</p>
     </div>
     <div id="bottom">
+      <img src="img/kkk.png" alt="jap" id = "qwer">
       <ul>
         <li><a href = "#">동문경조사</a></li>
         <li><a href = "#">동문행사일정</a></li>

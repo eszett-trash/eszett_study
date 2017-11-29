@@ -2,6 +2,7 @@ package pizzaPrj;
 
 public class AdditionalVO {
 	/* 2147483647 */
+	/* 1838860710*/
 	/* 1~3 사이즈/8388607: 토핑 / 1~6 도우 */
 	/* 첫자리 0 1 2 < 사이즈 */
 	private int id;
