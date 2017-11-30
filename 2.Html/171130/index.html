@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>드래그 앤 드롭</title>
+  <script src="script.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <p>원하는 물건을 끌어서 옮기세요</p>
+  <div id="shopping_cart" ondrop="handleDrop(event)" ondragover="allowDrop(event)" style="width : 450px; height:100px; padding:10px; border:1px dotted red;">
+  </div><br>
+  <img src="http://mblogthumb4.phinf.naver.net/20160211_191/jhh4ever_1455189638792poOiV_GIF/wdMFcE2.gif?type=w2" id="img1" draggable="true" ondragstart="handleDragStart(event)" width="150px" height="100px">
+  <img src="http://1.bp.blogspot.com/-Nu6fyP6829M/Vg9r9vbfivI/AAAAAAAABQw/KAvrT5hgHkg/s1600/tumblr_noffadoqrk1td74cro2_500.gif" id="img2" draggable="true" ondragstart="handleDragStart(event)" width="150px" height="100px">
+  <img src="http://cfile3.uf.tistory.com/image/2341224F55FD81540492A2" id="img3" draggable="true" ondragstart="handleDragStart(event)" width="150px" height="100px">
+
+
+  <form name="boardForm">
+    <table>
+      <tr>
+        <td>작성자 : </td>
+        <td><input type="text" name="writer"></td>
+      </tr>
+      <tr>
+        <td>제목 : </td>
+        <td><input type="text" name="title"></td>
+      </tr>
+      <tr>
+        <td colspan="2">내용:</td>
+      </tr>
+      <tr>
+        <td colspan="2"> <textarea name="content" rows="15" cols="60"></textarea></td>
+
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="button" name="" value="저장" onclick="boardAdd()">
+          <input type="reset" name="" value="취소">
+        </td>
+      </tr>
+    </table>
+    <br>
+    <hr color="red">
+    <table id="boList" border="1" width = "600px">
+      <thead>
+        <tr>
+          <th>작성자</th>
+          <th>제목</th>
+          <th>내용</th>
+          <th>날짜</th>
+        </tr>
+      </thead>
+      <tbody id = "boTbody">
+
+      </tbody>
+    </table>
+  </form>
+</body>
+
+</html>

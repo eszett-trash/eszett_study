@@ -3,7 +3,7 @@ package pizzaPrj;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class PizzaDB {
 
@@ -19,7 +19,7 @@ public class PizzaDB {
 	private List<MenuVO> menuVo = new ArrayList<MenuVO>();
 	// 추가/사이즈등등등
 	private List<AdditionalVO> additionalVo = new ArrayList<AdditionalVO>();
-	// 장바구니 (유저에 종속되어야 함)
+	// 장바구니
 	private List<CartVO> cartVo = new LinkedList<CartVO>();
 
 	private List<InventoryVo> inventoryVo = new ArrayList<InventoryVo>();
@@ -37,6 +37,12 @@ public class PizzaDB {
 		uv2.setPwd("q1234q");
 		userVo.add(uv2);
 
+		MenuVO mv = new MenuVO();
+		mv.setId(1);
+		mv.setName("기본피자");
+		mv.setPrice(3000);
+		menuVo.add(mv);
+		
 	}
 
 	// 로그인
@@ -62,9 +68,9 @@ public class PizzaDB {
 
 	// 회원가입
 	public boolean join(String nickname, String email, String password,
-			String address, int hp, boolean isAdmin) {
+			String address, String hp, boolean isAdmin) {
 		if (nickname == null || email == null || password == null
-				|| address == null || hp == 0) {
+				|| address == null || hp == null) {
 			System.out.println("잘못 입력하셨습니다.");
 			return false;
 		} else {
@@ -74,18 +80,30 @@ public class PizzaDB {
 					return false;
 				}
 			}
-			UserVO uv = new UserVO();
-			uv.setNickname(nickname);
-			uv.setEmail(email);
-			uv.setPwd(password);
-			uv.setAddress(address);
-			uv.setPhone(hp);
-			if (!uv.isAdmin()) {
-				uv.setAdmin(true);
+			// 패턴 체크
+
+			if (!hpchkRegEx(hp)) {
+				return false;
+			} else {
+				UserVO uv = new UserVO();
+				uv.setNickname(nickname);
+				uv.setEmail(email);
+				uv.setPwd(password);
+				uv.setAddress(address);
+				uv.setPhone(hp);
+				if (uv.isAdmin()) {
+					uv.setAdmin(true);
+				}
+				userVo.add(uv);
+				return true;
 			}
-			userVo.add(uv);
-			return true;
 		}
+	}
+
+	// HP유효성체크
+	private boolean hpchkRegEx(String hp) {
+		String hpchk = "^(01)[016-9]{1}-\\d{3,4}-\\d{4}$";
+		return Pattern.matches(hpchk, hp);
 	}
 
 	// 관리자 리스트
@@ -141,15 +159,31 @@ public class PizzaDB {
 	}
 
 	// 재료 품목 추가
-	public boolean update_inven(String name, int kind, int use) {
+	public boolean update_inven(String name, int kind, int use, int price) {
 		int addTail = inventoryVo.size();
 		InventoryVo iv = new InventoryVo();
 		iv.setId(setinvenId(kind));
 		iv.setKind(kind);
 		iv.setName(name);
 		iv.setUse(use);
+
+		if (kind == 2) {
+			add_Topping(name, price);
+		}
 		inventoryVo.add(addTail, iv);
 		return false;
+	}
+
+	private void add_Topping(String name, int price) {
+		int temp = 0;
+		AdditionalVO ad = new AdditionalVO();
+		for (int i = 0; i < additionalVo.size(); i++) {
+			++temp;
+		}
+		ad.setId(temp);
+		ad.setName(name);
+		ad.setPrice(price);
+		additionalVo.add(ad);
 	}
 
 	private int setinvenId(int kind) {
@@ -195,30 +229,81 @@ public class PizzaDB {
 		}
 	}
 
+	// 개인정보 보여주기
+	public void show_privateinfomation(String mailInput) {
+		for (int i = 0; i < userVo.size(); i++) {
+			if (userVo.get(i).getEmail().equals(mailInput)) {
+				System.out.println("주소 : " + userVo.get(i).getAddress());
+				System.out.println("HP : " + userVo.get(i).getPhone());
+			}
+		}
+	}
+
+	// 개인정보 수정
+	public void modify_privateInfomation(String mailInput, String address,
+			String hp) {
+		for (int i = 0; i < userVo.size(); i++) {
+			if (userVo.get(i).getEmail().equals(mailInput) && hpchkRegEx(hp)) {
+				userVo.get(i).setAddress(address);
+				userVo.get(i).setPhone(hp);
+				return;
+			}
+		}
+	}
+
 	// 메뉴추가
 	public void add_menu(String name, int price) {
 		MenuVO mv = new MenuVO();
 		int temp = 0;
-		for (int i = 0; i < inventoryVo.size(); i++) {
-			if (inventoryVo.get(i).getKind() == 2) {
-				System.out.println(++temp+ " | "
-						+ inventoryVo.get(i).getName());
-			}
-		}
-		mv.setId(setmenuId());
+//		for (int i = 0; i < inventoryVo.size(); i++) {
+//			if (inventoryVo.get(i).getKind()==2) {
+//				System.out.println(++temp + " | "
+//						+ inventoryVo.get(i).getName());
+//			}
+//		}
+		mv.setId(menuVo.size());// setmenuId());
 		mv.setName(name);
 		mv.setPrice(price);
 		menuVo.add(mv);
 	}
-		private int setmenuId(){
-			//TODO 아이디셋팅
-			return 0;
-		}
 
-		
-	//피자보기
-	public void show_pizzamenu()
-	{
+	// 메뉴 삭제
+	public void delete_pizza(int id) {
+		if (id > 10000) {
+			for (int i = 0; i < inventoryVo.size(); i++) {
+				if (inventoryVo.get(i).getId() == id) {
+					inventoryVo.remove(i);
+					return;
+				}
+			}
+		} else {
+			for (int i = 0; i < menuVo.size(); i++) {
+				if (menuVo.get(i).getId() == id) {
+					menuVo.remove(i);
+					return;
+				}
+			}
+		}
+	}
+	//
+	 public int add_topping(String id) {
+		 String[] temp = id.split(",");
+		 int sum=1;
+		 for(int i = 0 ; i <temp.length;i++)
+		 {
+			 sum =sum << 1;
+			 System.out.println(sum);
+			 temp[i]=temp[i].trim();
+			 if(temp[i].equals(additionalVo.get(i).getName()))
+			 {
+				 
+			 }
+		 }
+	 return 0;
+	 }
+
+	// 피자메뉴 보기
+	public void show_pizzamenu() {
 		for (int i = 0; i < menuVo.size(); i++) {
 			if (menuVo.get(i).getId() / 1000 == 0) {
 				System.out.print("ID : " + menuVo.get(i).getId() + " | ");
@@ -227,22 +312,31 @@ public class PizzaDB {
 			}
 		}
 	}
-	//사이드 보기
-	public void show_sidemenu()
-	{
+
+	// 사이드메뉴 보기
+	public void show_sidemenu() {
 		for (int i = 0; i < inventoryVo.size(); i++) {
 			if (inventoryVo.get(i).getKind() == 1) {
-				System.out.print("ID : " + inventoryVo.get(i).getId()
-						+ " | ");
-				System.out.print("이름 : " + inventoryVo.get(i).getName()
-						+ " | ");
+				System.out.print("ID : " + inventoryVo.get(i).getId() + " | ");
+				System.out
+						.print("이름 : " + inventoryVo.get(i).getName() + " | ");
 				System.out.println("가격 : " + inventoryVo.get(i).getPrice());
 			}
 		}
 	}
-	//이벤트 보기
-	public void show_eventmenu()
-	{
+
+	//토핑보기
+	public void show_toppingmenu() {
+		for (int i = 0; i < inventoryVo.size(); i++) {
+			if (inventoryVo.get(i).getKind() == 2) {
+				System.out
+						.print("이름 : " + inventoryVo.get(i).getName() + " | ");
+				System.out.println("가격 : " + inventoryVo.get(i).getPrice());
+			}
+		}
+	}
+	// 이벤트메뉴 보기
+	public void show_eventmenu() {
 		for (int i = 0; i < menuVo.size(); i++) {
 			if (menuVo.get(i).getId() / 100000 > 0) {
 				System.out.print("ID : " + menuVo.get(i).getId() + " | ");
@@ -252,11 +346,70 @@ public class PizzaDB {
 		}
 	}
 
+	// 카트 보기
+	public void show_cart() {
+		int sum = 0;
+		if (cartVo.isEmpty()) {
+			System.out.println("카트가 비어있습니다.");
+		} else {
+			for (int i = 0; i < cartVo.size(); i++) {
+				System.out.println(cartVo.get(i).getId() + " | "
+						+ cartVo.get(i).getName() + " | "
+						+ cartVo.get(i).getPrice());
+				sum += cartVo.get(i).getPrice();
+			}
+			System.out.println(sum);
+		}
+	}
 
+	// 카트 삭제
+	public void delete_cart(int id) {
+		if (cartVo.isEmpty()) {
+			System.out.println("카트가 비어있습니다.");
+		} else {
+			for (int i = 0; i < cartVo.size(); i++) {
+				if (cartVo.get(i).getId() == id) {
+					cartVo.remove(i);
+				}
+			}
+		}
+	}
 
+	// 피자 구매
+	public void buy_pizza(int id) {
+		CartVO cv = new CartVO();
+		for (int i = 0; i < menuVo.size(); i++) {
+			if (menuVo.get(i).getId() == id) {
+				cv.setId(id);
+				cv.setName(menuVo.get(i).getName());
+				cv.setPrice(menuVo.get(i).getPrice());
+				cartVo.add(cv);
+				return;
+			}
+		}
+	}
 
+	// 사이드 구매
+	public void buy_side(int id) {
+		CartVO cv = new CartVO();
+		for (int i = 0; i < inventoryVo.size(); i++) {
+			if (inventoryVo.get(i).getId() == id) {
+				if (inventoryVo.get(i).getKind() == 2) {
+					cv.setId(id);
+					cv.setName(inventoryVo.get(i).getName());
+					cv.setPrice(inventoryVo.get(i).getPrice());
+					cartVo.add(cv);
+					return;
+				}
+			}
+		}
+	}
 
-
-
-
+	// // 모든 유저 보기
+	// public void viewUser()
+	// {
+	// for (int i = 0; i < userVo.size(); i++) {
+	// System.out.println(userVo.get(i).getEmail());
+	// }
+	// }
 }

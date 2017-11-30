@@ -5,7 +5,7 @@ public class UserVO {
 	private String pwd;
 	private String email;
 	private String address;
-	private int phone;
+	private String phone;
 	private int point;
 	private int sales;
 	private boolean isAdmin;
@@ -35,10 +35,10 @@ public class UserVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public int getPoint() {

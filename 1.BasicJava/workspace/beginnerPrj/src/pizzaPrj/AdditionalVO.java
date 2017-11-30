@@ -7,7 +7,7 @@ public class AdditionalVO {
 	/* 첫자리 0 1 2 < 사이즈 */
 	private int id;
 	private String name;
-	private String price;
+	private int price;
 	
 	public int getId() {
 		return id;
@@ -21,10 +21,10 @@ public class AdditionalVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	
