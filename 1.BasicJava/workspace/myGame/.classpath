@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="D:/B_Util/2.Java/JDK1.8/jre/lib/ext/jfxrt.jar"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JDK1.8"/>
+	<classpathentry kind="src" path="FxPrac"/>
+	<classpathentry kind="src" path="FxPrac2"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JDK1.8"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

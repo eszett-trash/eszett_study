@@ -30,6 +30,12 @@ function boardAdd()
     return;
   }
   var title = f.title.value;
+  if(title.length ==0)
+  {
+    alert("작성자를 입력 해 주세요");
+    f.title.focus();
+    return;
+  }
   var content = f.content.value;
 
   var today = new Date();

@@ -27,7 +27,17 @@ main {
   width: 100%;
   overflow: hidden;
 }
-
+img{
+  max-width: 960px;
+}
+.all{
+  width: 100%;
+  float: left;
+}
+.clear{
+  clear:both;
+  position: inherit;
+}
 a {
   text-decoration: none;
   color: #6a6a6a;
@@ -36,7 +46,7 @@ a {
 #main_menu {
   position: absolute;
   top: 70px;
-  left: 700px;
+  left: 400px;
 }
 
 #main_menu li {
@@ -51,6 +61,7 @@ a {
   -webkit-padding-start: 0px;
   padding-top: 20px;
   margin-left: 185px;
+  z-index: 999;
 }
 
 #submenu1 li {
@@ -61,6 +72,20 @@ a {
   display: none;
   padding-top: 0px;
   margin-left: 320px;
+}
+#imgslide{
+  height:350px;
+}
+.imgs{
+  position: relative;
+  overflow: hidden;
+  height: 350px;
+  background: #000;
+}
+.imgs>img{
+  width:100%;
+  position: absolute;
+  transition: all 1s;
 }
 
 #submenu2 li {
@@ -81,8 +106,8 @@ a {
   padding: 15px 50px;
   border-radius: 15px;
   top: 315px;
-  left: 760px;
-  z-index: 0;
+  left: 450px;
+  z-index: 999;
 }
 
 .bd {
