@@ -9,25 +9,23 @@ public class ThreadTest04 {
 
 	public static void main(String[] args) {
 		SumThread sm = new SumThread(1, 2_000_000_000L);
-		SumThread[] smArr = new SumThread[]{
-				new SumThread(1, 500_000_000L),
+		SumThread[] smArr = new SumThread[] { new SumThread(1, 500_000_000L),
 				new SumThread(500_000_001L, 1_000_000_000L),
 				new SumThread(1_000_000_001L, 1_500_000_000L),
-				new SumThread(1_500_000_001L, 2_000_000_000L)
-		};
+				new SumThread(1_500_000_001L, 2_000_000_000L) };
 
-		//단독처리
+		// 단독처리
 		long startTime = System.currentTimeMillis();
 		sm.start();
 		try {
 			sm.join();
-		} catch (InterruptedException e) {}
+		} catch (InterruptedException e) {
+		}
 		long endTime = System.currentTimeMillis();
-		
-		System.out.println("단독처리 경과시간 : " + (endTime-startTime));
-		
-		
-		//병렬처리
+
+		System.out.println("단독처리 경과시간 : " + (endTime - startTime));
+
+		// 병렬처리
 		startTime = System.currentTimeMillis();
 		for (SumThread sumThread : smArr) {
 			sumThread.start();
@@ -36,10 +34,11 @@ public class ThreadTest04 {
 			for (SumThread sumThread : smArr) {
 				sumThread.join();
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		endTime = System.currentTimeMillis();
-		
-		System.out.println("병렬처리 경과시간 : " + (endTime-startTime));
+
+		System.out.println("병렬처리 경과시간 : " + (endTime - startTime));
 	}
 }
 

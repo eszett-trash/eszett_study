@@ -20,4 +20,4 @@ QUOTA UNLIMITED ON 테이블 스페이스명;
 create user hw identified by ces;
 
 --유저 권한부여
-grant connect, resource to hw;
+grant 꿘한 to hw;
