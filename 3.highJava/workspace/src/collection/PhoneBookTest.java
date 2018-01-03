@@ -1,12 +1,32 @@
 package collection;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class PhoneBookTest {
 	// key는 이름으로 value는 phone클래스의 인스턴스로 한다.
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		HashMap<String, Phone> pn = new HashMap<String, Phone>();
+		
+		try {
+			ObjectInputStream ois = new ObjectInputStream(
+					new BufferedInputStream(new FileInputStream(
+							"D:/D_Other/member.obj")));
+			
+			pn = (HashMap<String, Phone>) ois.readObject();
+
+			ois.close();
+			} catch (Exception e) {
+			// TODO: handle exception
+		}
 		Scanner s = new Scanner(System.in);
 		while (true) {
 			String name;
@@ -29,12 +49,6 @@ public class PhoneBookTest {
 				ph = s.next();
 				System.out.print("주소 >> ");
 				addr = s.next();
-				if (!pn.isEmpty()) {
-					if (name.equals(pn.get(name).getName())) {
-						System.out.println("중복된 이름이 있습니다.");
-						break;
-					}
-				}
 				pn.put(name, new Phone(name, addr, ph));
 				break;
 			case 2:
@@ -102,6 +116,18 @@ public class PhoneBookTest {
 				}
 				break;
 			case 0:
+				try {
+					ObjectOutputStream oos = new ObjectOutputStream(
+							new BufferedOutputStream(new FileOutputStream(
+									"D:/D_Other/member.obj")));
+
+					// 쓰기
+					oos.writeObject(pn);
+					oos.close();
+					System.out.println("Success Writing....");
+				}catch (Exception e) {
+					// TODO: handle exception
+				}
 				System.exit(0);
 				break;
 
@@ -112,7 +138,12 @@ public class PhoneBookTest {
 	}
 }
 
-class Phone {
+class Phone implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3783193592477533594L;
+	
 	private String name;
 	private String addr;
 	private String ph;

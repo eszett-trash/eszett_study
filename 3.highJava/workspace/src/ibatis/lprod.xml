@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+										"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!--
+	sqlMap태그의 namespace속성값은 이 문서에 설정된
+	SQL문들을 호출할 때 같이 사용되는 이름이다. 
+ -->
+<sqlMap namespace ="lprodTest">
+<!-- 
+	이 영역에서 사용 할 수 있는 태그들:
+	select insert update delete등등
+ -->
+ <!-- 
+ 	id속성 : 해당 태그를 호출 할 때 사용되는 이름
+ 				(위의 namespace와 같이 연결하여 사용하다.)
+	parameterClass : SQL문에 사용될 데이터가 들어잇는 객체를 지정한다.,
+							(보통 VO클래스, 자바의 자료형 이름등이 사용된다.)
+  -->
+  <insert id="lprodInsert"  parameterClass = "ibatis.LprodVO">
+  		insert into lprod2 (lprod_id, lprod_gu, lprod_nm) values (#lprod_id#,#lprod_gu#,#lprod_nm#)
+  </insert>
+  <update id = "lprodUpdate" parameterClass = "ibatis.LprodVO">
+  		update lprod2 set lprod_id = #lprod_id# , lprod_nm = #lprod_nm#
+  		where lprod_gu = #lprod_gu#
+  </update>
+  <!-- 
+  	PARAMETERcLASS 에 설정되는 값이 단일값이면 SLQ문에 이 값을 나타내는 변수는 특별히 이름이 정해
+  	지지 않았다.
+  	즉, 사용자 임의로 지정 할수 있다.
+   -->
+  <delete id="lprodDelete" parameterClass="String">
+  		delete from lprod2 where lprod_gu=#lprod_gu#
+  </delete>
+  <!-- 
+  		resultClass : select문을 처리한 결과를 저장할 VO클래스나 자료형 이름을 지정한다.
+  						결과가 여러개이면 자동으로 List에 담아서 반환 해 준다.
+   -->
+  <select id="getAllData"  resultClass="ibatis.LprodVO">
+ 		 select * from lprod2
+  </select>
+  <select id="getLprodData" parameterClass="String" resultClass="ibatis.LprodVO">
+  		select * from lprod2 where lprod_gu = #lprod_gu#
+  </select>
+  <select id="getAllCount" resultClass="int">
+  		select count(*) from lprod2
+  </select>
+</sqlMap>

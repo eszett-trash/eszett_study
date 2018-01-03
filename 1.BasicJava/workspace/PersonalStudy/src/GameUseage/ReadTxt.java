@@ -17,15 +17,20 @@ public class ReadTxt {
 	private final int SIZE;
 
 	public ReadTxt() throws IOException {
-		BufferedReader br = new BufferedReader(
-				new FileReader(
-						"D:\\eszett_study\\1.BasicJava\\workspace\\PersonalStudy\\text.txt"));
+		BufferedReader br = new BufferedReader(new FileReader(/* 여기에는 읽어 올 파일 가져오기 */
+		"D:\\eszett_study\\1.BasicJava\\workspace\\PersonalStudy\\text.txt"));
 		while (true) {
 			String line = br.readLine();
+
 			if (line == null) {
 				break;
 			}
+			if (line.startsWith("//") || line.trim().isEmpty()) {
+				continue;
+			}
 			text.add(line);
+			System.out.println("===>" + line);
+			line = "\0";
 		}
 		br.close();
 		this.SIZE = text.size(); // initialize size
@@ -44,9 +49,9 @@ public class ReadTxt {
 			String temp[] = new String[txt.length() / MAX_TEXT_PER_LINE + 1];
 			for (int i = 0; i < temp.length - 1; i++) {
 				if (!txt.substring(MAX_TEXT_PER_LINE * i,
-						MAX_TEXT_PER_LINE * (i + 1)).isEmpty());{
+						MAX_TEXT_PER_LINE * (i + 1)).isEmpty()) {
 					temp[i] = txt.substring(MAX_TEXT_PER_LINE * i,
-							MAX_TEXT_PER_LINE * (i + 1)).trim();
+							MAX_TEXT_PER_LINE * (i + 1));
 				}// close if
 			}// close for loop
 			temp[temp.length - 1] = txt.substring((temp.length - 1)
@@ -58,15 +63,6 @@ public class ReadTxt {
 			returnTxt = txt;
 		}// close if
 		return returnTxt;
-	}
-
-	// 시작하는게 대사인지 주석인지 판단하는 함수가 필요함.
-	//#으로 시작하면 주석
-	//$로 시작하면 
-	public void isRemark(int index) {
-		if (splittxt(text.get(index)).charAt(0) != '#') {
-
-		}
 	}
 
 	//
