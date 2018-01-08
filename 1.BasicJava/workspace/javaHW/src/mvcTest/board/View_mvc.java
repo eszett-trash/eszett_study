@@ -1,11 +1,11 @@
 package mvcTest.board;
 
+import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class View_mvc {
-	Searvice_mvc sm = null;
+	Dao_mvc dam = Dao_mvc.getInstance();
 	public View_mvc() {
-		sm = Searvice_mvc.getInstance();
 	}
 	
 	private int intErrchk() { //입력단 에러체크 메서드 (view 클래스 전체에서 사용)
@@ -77,12 +77,15 @@ public class View_mvc {
 		
 	}
 	private void vw() {
-		while (true) {
-			System.out.print("상세 보기 할 게시글 번호 입력 >> ");
-		}		
+		System.out.print("상세 보기 할 게시글 번호 입력 >> ");
 	}
 	private void n_Write() {
-		// TODO Auto-generated method stub
+		while (true) {
+			String sql = "insert into jdbc_board (board_no, board_title, board_writer, board_date, board_content)"
+					+ " values (?,?,?,sysdate,?)";
+			
+			dam.insertCon(sql);
+		}		
 		
 	}
 	private void modi_Write() {

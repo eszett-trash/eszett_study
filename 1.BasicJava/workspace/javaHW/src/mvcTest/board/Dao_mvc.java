@@ -1,51 +1,64 @@
 package mvcTest.board;
 
-public class Dao_mvc {
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
 
-	private int num;
-	private String title;
-	private String writer;
-	private String date;
-	private String content;
+public class Dao_mvc implements IDao_mvc {
+	VO_mvc vm = new VO_mvc();
+	private static Dao_mvc uniqueInstance = new Dao_mvc();
 
-	public int getNum() {
-		return num;
+	private Dao_mvc() {
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public static Dao_mvc getInstance() {
+		return uniqueInstance;
 	}
 
-	public String getTitle() {
-		return title;
+	@Override
+	public int insertCon(String sql) {
+		int cnt = 0;
+		try {
+			
+			PreparedStatement pr = DBUtil.getConnection().prepareStatement(sql);
+			
+			pr.setInt(1, vm.getNum());
+			pr.setString(2, vm.getTitle());
+			pr.setString(3, vm.getWriter());
+			pr.setString(5, vm.getContent());
+			
+			cnt = pr.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+		return cnt;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	@Override
+	public int deleteCon(String num) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	public String getWriter() {
-		return writer;
+	@Override
+	public int updateCon(VO_mvc dm) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	@Override
+	public List<VO_mvc> getList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public String getDate() {
-		return date;
+	@Override
+	public List<VO_mvc> getContent() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
 
 }

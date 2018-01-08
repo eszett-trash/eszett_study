@@ -44,4 +44,11 @@
   <select id="getAllCount" resultClass="int">
   		select count(*) from lprod2
   </select>
+  <!-- 
+  파라미터로
+   -->
+  <select id = 'getSearchMember' parameterClass = 'map'  resultClass="ibatis.LprodVO">
+  	select * from
+  	where $field$ like '%' || #data# || '%'
+  </select>
 </sqlMap>
