@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="C:/Users/PC07/Downloads/commons-email-1.5-bin (1)/commons-email-1.5/commons-email-1.5.jar" sourcepath="C:/Users/PC07/Downloads/commons-email-1.5-bin (1)/commons-email-1.5/commons-email-1.5-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/PC07/Downloads/commons-email-1.5-bin (1)/commons-email-1.5/commons-email-1.5-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/B_Util/2.Java/JDK1.8/jre/lib/ext/jfxrt.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="FxPrac"/>
