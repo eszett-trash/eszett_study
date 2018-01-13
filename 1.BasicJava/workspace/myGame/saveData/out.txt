@@ -1,3 +1,0 @@
-charname=주인공 이름
-readLine=20
-gold=10
