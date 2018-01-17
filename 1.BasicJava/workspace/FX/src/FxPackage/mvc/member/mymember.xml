@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+		   "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 
+	sqlMap태그의 namespace속성값은 이 문서에 설정된
+	SQL문들을 호출할 때 같이 사용되는 이름이다.
+ -->		   
+<sqlMap namespace="mymember">
+	<typeAlias alias="memVo" type="mvc.member.MemberVO"/>
+	
+<!-- 	<insert id="memInsert" parameterClass="mvcTest.member.MemberVO"> -->
+	<insert id="memInsert" parameterClass="memVo">
+	insert into mymember (mem_id, mem_name, mem_tel, mem_addr)
+	values (#mem_id#, #mem_name#, #mem_tel#, #mem_addr#)
+	</insert>
+	
+	<delete id="memDelete" parameterClass="String">
+	delete from mymember where mem_id=#mem_id#
+	</delete>
+	
+	<update id="memUpdate" parameterClass="memVo">
+	update mymember set mem_name=#mem_name#, mem_tel=#mem_tel#,
+			mem_addr=#mem_addr# 
+	where mem_id=#mem_id#
+	</update>
+	
+	<select id="getMemberCount" parameterClass="String" resultClass="int">
+	select count(*) from mymember
+	where mem_id=#mem_id#
+	</select>
+	
+	<select id="getAllMember" resultClass="memVo">
+	select * from mymember
+	</select>
+	
+	<!-- 
+	파라미터로 가져온 값을 컬럼명등의 자리에 사용할 경우
+	'$'기호를 사용하여 나타낸다.
+	예) $변수명$
+	
+	 -->
+	<select id="getSearchMember" parameterClass="map" resultClass="memVo">
+	select * from mymember
+	where  $field$ like '%' || #data# || '%'
+	</select>
+
+</sqlMap>
+
+
+
+
+
+
+
+

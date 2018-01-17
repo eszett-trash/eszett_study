@@ -11,15 +11,27 @@ import javafx.stage.Stage;
 public class MemberMVCMain extends Application {
 
 	@Override
-	public void start(Stage primaryStage) {
-		try {
-			Parent rt = FXMLLoader.load(getClass().getResource("D:\\eszett_study\\1.BasicJava\\workspace\\FX\\src\\FxPackage\\mvc\\member\\MemberMVCMain.fxml"));
-			primaryStage.setScene(new Scene(rt));
-			primaryStage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void start(Stage primaryStage) throws IOException {
+//		Parent root = FXMLLoader.load(
+//			getClass().getResource("MemberMVCMain.fxml")
+//		); 
+		
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource("MemberMVCMain.fxml"));
+		Parent root = loader.load();
+		
+		// FXML에 설정된 컨트롤러 객체 구하기
+		MemberMVCController controller = loader.getController();
+		
+		// 컨트롤러에 부모창객체(primaryStage객체)를 셋팅한다.
+		controller.setPrimaryStage(primaryStage);
+		
+	
+		Scene scene = new Scene(root);
+		primaryStage.setTitle("회원관리");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		
 	}
 
 	public static void main(String[] args) {

@@ -101,7 +101,7 @@ public class DialogueTest extends Application {
 
 		// 자식창을 자바코드로 직접 작성하는 방법
 		btnCus1.setOnAction(e -> {
-			Stage secondaryStage = new Stage(StageStyle.DECORATED/* 기본 창 */);
+			Stage secondaryStage = new Stage(StageStyle.UTILITY/* 기본 창 */);
 
 			secondaryStage.initModality(Modality.WINDOW_MODAL); // 모달 창 여부를 설정하기
 			secondaryStage.initOwner(primaryStage);// 부모창 설정
