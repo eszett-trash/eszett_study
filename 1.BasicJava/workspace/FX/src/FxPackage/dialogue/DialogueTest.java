@@ -2,25 +2,23 @@ package FxPackage.dialogue;
 
 import java.io.File;
 
+
+
+
+
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.stage.Modality;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 
 public class DialogueTest extends Application {
 
@@ -28,57 +26,59 @@ public class DialogueTest extends Application {
 	public void start(Stage primaryStage) {
 		HBox rt = new HBox(10);
 		rt.setPadding(new Insets(10));
-
+		
 		Button btnFO = new Button("OPEN FileChooser 실행");
 		Button btnFS = new Button("SAVE FileChooser 실행");
 		Button btnDIR = new Button("Driectory FileChooser 실행");
 		Button btnPop = new Button("Popup 실행");
-
-		// 파일 오픈
-		btnFO.setOnAction(e -> {
+		
+		Button btnCus1 = new Button("사용자 정의 다이얼로그 실행1");
+		Button btnCus2 = new Button("사용자 정의 다이얼로그 실행2");
+		
+		//파일 오픈
+		btnFO.setOnAction(e->{
 			FileChooser fc = new FileChooser();
-			// 선택할 파일의 확장자 그룹 설정
-			fc.getExtensionFilters()
-					.addAll(new ExtensionFilter("TextFile", "*.txt"),
-							new ExtensionFilter("ImageFile", "*.png", "*.jpg",
-									"*.gif"),
-							new ExtensionFilter("AudioFile", "*.wav", "*.mp3"),
-							new ExtensionFilter("AllFile", "*.*"));
+			//선택할 파일의 확장자 그룹 설정
+			fc.getExtensionFilters().addAll(
+					new ExtensionFilter("TextFile","*.txt"),
+					new ExtensionFilter("ImageFile","*.png","*.jpg","*.gif"),
+					new ExtensionFilter("AudioFile","*.wav","*.mp3"),
+					new ExtensionFilter("AllFile","*.*")
+			);
 			File selectedFile = fc.showOpenDialog(primaryStage);
-			if (selectedFile != null) {
+			if (selectedFile!=null) {
 				System.out.println(selectedFile.getPath());
 			}
 		});
-		// 파일 세이브
-		btnFS.setOnAction(e -> {
+		//파일 세이브
+		btnFS.setOnAction(e->{
 			FileChooser fc = new FileChooser();
-
+			
 			fc.getExtensionFilters().add(new ExtensionFilter("AllFile", "*.*"));
-
+			
 			File f = fc.showSaveDialog(primaryStage);
-			if (f != null) {
+			if (f!=null) {
 				System.out.println(f.getPath());
 			}
 		});
-		// 디렉토리 선택
-		btnDIR.setOnAction(e -> {
+		//디렉토리 선택
+		btnDIR.setOnAction(e->{
 			DirectoryChooser dc = new DirectoryChooser();
-
+			
 			File dir = dc.showDialog(primaryStage);
-			if (dir != null) {
+			if (dir!=null) {
 				System.out.println(dir.getPath());
 			}
 		});
-
-		// 팝업
-		btnPop.setOnAction(e -> {
-			Popup pu = new Popup();
-
+		
+		//팝업
+		btnPop.setOnAction(e->{
 			HBox hb = new HBox(5);
-			hb.setAlignment(Pos.CENTER);
-			hb.setStyle("-fx-background-color: black; -fx-background-radius:20;");
-
+			hb.setAlignment(Pos.CENTER_LEFT);
+			hb.setStyle("-fx-background-color: black; -fx-background-radius:20;"); 
+			
 			ImageView iv = new ImageView();
+<<<<<<< HEAD
 			iv.setImage(new Image(getClass().getResourceAsStream(
 					"../images/Home.jpg")));
 			iv.setFitWidth(30);
@@ -134,46 +134,18 @@ public class DialogueTest extends Application {
 			secondaryStage.setScene(new Scene(childrt, 400, 150));
 			secondaryStage.resizableProperty().set(false); // 창크기 설정 불가
 			secondaryStage.show();
+=======
+			iv.setImage(new Image(getClass().getResourceAsStream("../images/Home.jpg")));
+>>>>>>> parent of 0a40e10... s
 		});
-
-		// 자식창을 씬빌더로 만드는 방법
-		btnCus2.setOnAction(e -> {
-			Stage secondaryStage = new Stage(StageStyle.DECORATED);
-
-			secondaryStage.initModality(Modality.WINDOW_MODAL); // 모달 창 여부를 설정하기
-			secondaryStage.initOwner(primaryStage);// 부모창 설정
-			secondaryStage.setTitle("자식창");
-
-			try {
-				Parent child = FXMLLoader.load(getClass().getResource(
-						"CustomDialog.fxml"));
-
-				/*
-				 * FXML에서 구성 해 놓ㅇ른 컨트롤 객체 구하기(ID속성 값 이용)
-				 */
-				Label lbt = (Label) child.lookup("#childLb");
-				lbt.setText("확인 하셧습니까?");
-
-				Button btn = (Button) child.lookup("#btnOk");
-				btn.setOnAction(ee -> {
-					secondaryStage.close();
-				});
-
-				secondaryStage.setScene(new Scene(child));
-				secondaryStage.setResizable(false);
-				secondaryStage.show();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		});
-
-		rt.getChildren().addAll(btnFO, btnFS, btnDIR, btnPop, btnCus1, btnCus2);
-
+		
+		rt.getChildren().addAll(btnFO,btnFS,btnDIR,btnPop,btnCus1,btnCus2);
+		
 		primaryStage.setScene(new Scene(rt));
 		primaryStage.setHeight(150);
 		primaryStage.show();
-
+		
+		
 	}
 
 	public static void main(String[] args) {
